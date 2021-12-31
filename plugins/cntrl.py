@@ -124,6 +124,7 @@ async def add_poster(bot, message):
             media.caption = f'{reply.caption.html}\n🌟@Bandolako2bot \n💿[IMAGE URL]({media.file_ref})'
             break
         elif media is not None :
+            media.file_ref = 'hellow'
             testi=await bot.ask(text = " send filename of the document", chat_id = message.from_user.id)
             media.file_name = testi.text
             resv = ".dd#.x"
@@ -174,6 +175,7 @@ async def add_data(bot, message):
                             media.caption = mk.caption
                             break
                     resv = f'{dcm_id}'
+                    media.file_ref = 'hellow'
                     mkg = 'data.dd#.'
                     media.caption = f'{media.caption}\n🌟@Bandolako2bot 'if media.caption else None
                     media.file_name = f'{mkg}bnd2bot.dd#.H{mkv1}@.{resv}.d#.{mkv2}'
