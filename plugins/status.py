@@ -1,7 +1,7 @@
 
 import datetime
 from info import DATABASE_URI, DATABASE_NAME, CHANNELS
-from plugins.channel import Database
+from plugins.database import Database
 
 db = Database(DATABASE_URI, DATABASE_NAME)
 
