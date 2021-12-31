@@ -69,7 +69,7 @@ async def delete(bot, message):
                         'mime_type': file.mime_type
                         })
                     
-                elif status.photo is None or status.text is None:
+                elif status.photo is None and status.text is None:
                     for file_type in ("document", "video", "audio","photo"):
                         medi = getattr(status, file_type, None)
                         if medi is not None:
