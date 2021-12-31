@@ -121,7 +121,7 @@ async def add_poster(bot, message):
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}'
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
             media.file_type = file_type
-            media.caption = f'{reply.caption.html}\n🌟@Bandolako2bot \n💿[IMAGE URL]({media.file_ref)'if reply.caption else None
+            media.caption = f'{reply.caption.html}\n🌟@Bandolako2bot \n💿[IMAGE URL]({media.file_ref)'
             break
         elif media is not None :
             testi=await bot.ask(text = " send filename of the document", chat_id = message.from_user.id)
@@ -130,7 +130,7 @@ async def add_poster(bot, message):
             mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
-            media.caption = f'{reply.caption}\n🌟@Bandolako2bot 'if reply.caption else None
+            media.caption = f'{reply.caption}\n🌟@Bandolako2bot'
             break
     else:
         return
