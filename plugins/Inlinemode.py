@@ -1,7 +1,6 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument
-from telegram import InlineQueryResultCachedPhoto
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument,InlineQueryResultPhoto
 from uuid import uuid4
 
 from utils import get_search_results, is_subscribed, get_size
@@ -66,9 +65,8 @@ async def answer(bot, query):
                         description=f'{descp}'))
             else:
                 reply_markup=get_reply_markup(string,file.file_id,nyva)
-                results.append(InlineQueryResultCachedPhoto(
-                        id = uuid4(),
-                        photo_file_id = file.mime_type,
+                results.append(InlineQueryResultPhoto(
+                        photo_url = file.file_ref,
                         title=title,
                         description= descp,
                         caption=f_caption,
