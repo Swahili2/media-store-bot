@@ -141,7 +141,7 @@ async def start(bot, cmd):
                 )
             )
 
-Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
+Client.on_message(filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     await handle_user_status(client,message)
     if message.text.startswith("/"):
@@ -149,7 +149,7 @@ async def filter(client, message):
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
    
-@Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
+@Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
     await handle_user_status(client,message)
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
