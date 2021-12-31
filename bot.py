@@ -2,7 +2,7 @@ import logging
 import logging.config
 
 # Get logging configurations
-logging.config.fileConfig('logging.conf')
+logging.config.fileConfig('logging')
 logging.getLogger().setLevel(logging.ERROR)
 
 from pyrogram import Client, __version__
