@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
 
 BOT = {}
-@Client.on_inline_query(filters.user(AUTH_USERS) if AUTH_USERS else None)
+@Client.on_inline_query(filters.groups)
 async def answer(bot, query):
     """Show search results for given inline query"""
     nyva=BOT.get("username")
@@ -56,7 +56,7 @@ async def answer(bot, query):
             f_caption = f"{title}"
         if id2=='x':
             if file.file_type != "photo":
-                reply_markup=get_reply_markup(string,file.file_id,nyva)
+                reply_markup=get_reply_markup(string,file.file_id,query.chat.id,nyva)
                 results.append(
                     InlineQueryResultCachedDocument(
                         title=title,
@@ -102,10 +102,10 @@ async def answer(bot, query):
                            switch_pm_parameter="okay")
 
 
-def get_reply_markup(query, file_id, nyva):
+def get_reply_markup(query, file_id,id3, nyva):
     buttons = [
         [
-            InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")
+            InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}##{id3}")
         ]
         ]
     return InlineKeyboardMarkup(buttons)
