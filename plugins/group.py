@@ -1,4 +1,5 @@
-from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, BUTTON
+from plugins.database import db
+from info import CUSTOM_FILE_CAPTION, BUTTON,START_MSG
 from plugins.status import handle_user_status
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
