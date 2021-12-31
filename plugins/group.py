@@ -169,7 +169,7 @@ async def group(client, message):
                 file_id = file.file_id
                 filename = f"[{get_size(file.file_size)}] {title}"
                 btn.append(
-                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
+                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}##{message.chat.id}")]
                 )
             await message.reply_text(f"<b>Majibu : ({len(btn)}) ndiyo yaliopatikana kutoka kwenye databaese yetu bonyeza kitufe <b>(🔍Majibu ya Database : {len(btn)})</b> Kisha subir kidogo,kisha chagua unachokipenda.\n\n Kama hakipo tuma neno orodha kukagua kwenye orodha ya vitu vyote vilivyopo kwenye database.­</b>", reply_markup=get_reply_makup(search,len(btn)))
         else:
