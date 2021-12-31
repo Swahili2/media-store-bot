@@ -150,7 +150,7 @@ async def add_data(bot, message):
         if files:
             mime = await bot.ask(text = " send photo link/URL for verifying", chat_id = message.from_user.id)
             for file in files: 
-                title = file.mime_type
+                title = file.file_ref
                 if title==mime.text:
                     pres = 'present'
                     break  
