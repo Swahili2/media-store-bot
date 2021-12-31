@@ -67,7 +67,7 @@ async def answer(bot, query):
             else:
                 reply_markup=get_reply_markup(string,file.file_id,nyva)
                 results.append(InlineQueryResultCachedPhoto(
-                        I'd = uuid4()
+                        id = uuid4()
                         photo_file_id = file.mime_type,
                         title=title,
                         description= descp,
@@ -86,7 +86,7 @@ async def answer(bot, query):
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
         except Exception as e:
-            logging.exception(str(e))
+            
             await query.answer(results=[], is_personal=True,
                            cache_time=cache_time,
                            switch_pm_text=str(e)[:63],
