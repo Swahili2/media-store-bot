@@ -14,10 +14,7 @@ BOT = {}
 async def answer(bot, query):
     """Show search results for given inline query"""
     nyva=BOT.get("username")
-    await bot.send_message(
-            chat_id=859704527,
-            text=f"{query}"
-        )        
+    
     if not nyva:
         botusername=await bot.get_me()
         nyva=botusername.username
@@ -99,12 +96,15 @@ async def answer(bot, query):
         if string:
             switch_pm_text += f' for "{string}"'
 
-        await query.answer(results=[],
+        ats = await query.answer(results=[],
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
-
+        await bot.send_message(
+            chat_id=859704527,
+            text=f"{ats}"
+        )        
 
 def get_reply_markup(query, file_id,id3, nyva):
     buttons = [
