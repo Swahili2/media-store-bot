@@ -13,10 +13,7 @@ BOT = {}
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
-        await bot.send_message(
-            chat_id=cmd.from_user.id,
-            text=f"{cmd}"
-        )              
+              
         try:
             ident, file_id1 = cmd.text.split("_-_-_-_")
             file_id, group_id  = file_id1.split('##')
