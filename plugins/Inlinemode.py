@@ -106,7 +106,7 @@ async def answer(bot, query):
     else:
         title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
         result = []
-        text1= f"Mpendwa  {query.from_user.first_name} ,Napenda kutanguliza shukran zangu za dhat kwa kuweza kuniamini kuwa naweza kukupa muv au series, nyimbo n.k...\n\n Mimi ni  robot naweza kutumika kwenye magroup tu ambayo m nipo au ukatafta chochote ukiwa inline kwenye group lolote niwe nipo au sipo ila sehemu nyingine zaid ya magroup siwez kufanya kaz kwa maelezo zaidi jiunge na kikundi chetu cha msaada \n [bonyeza hapa kujiunga](https://t.me/+NlxxLyYIY1hiMWFk)*
+        text1= f"Mpendwa  {query.from_user.first_name} ,Napenda kutanguliza shukran zangu za dhat kwa kuweza kuniamini kuwa naweza kukupa muv au series, nyimbo n.k...\n\n Mimi ni  robot naweza kutumika kwenye magroup tu ambayo m nipo au ukatafta chochote ukiwa inline kwenye group lolote niwe nipo au sipo ila sehemu nyingine zaid ya magroup siwez kufanya kaz kwa maelezo zaidi jiunge na kikundi chetu cha msaada \n [bonyeza hapa kujiunga](https://t.me/+NlxxLyYIY1hiMWFk)"
         result. append(InlineQueryResultArticle(
                     title=title,
                     input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True,
