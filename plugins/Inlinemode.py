@@ -106,7 +106,7 @@ async def answer(bot, query):
     else:
         result = []
         result. append(InlineQueryResultArticle(
-                    title=keyword.upper(),
+                    title="haipo",
                     input_message_content=InputTextMessageContent(message_text = "bellow hssan", disable_web_page_preview = True,
                         parse_mode = 'html'),
                     description='Text',
