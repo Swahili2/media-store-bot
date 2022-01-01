@@ -21,3 +21,6 @@ async def handle_user_status(bot, cmd):
                 datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
         ).days > ban_status["ban_duration"]:
             await db.remove_ban(chat_id)
+    if await db.is_group_exist(cmd.chat.id):
+        
+
