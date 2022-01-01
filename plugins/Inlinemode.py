@@ -1,7 +1,7 @@
 import logging
 from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument,InlineQueryResultPhoto
-from uuid import uuid4
+
 
 from utils import get_search_results, is_subscribed, get_size
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -103,7 +103,10 @@ async def answer(bot, query):
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
-        
+    else:
+        await bot.send_message(
+                        chat_id=query.from_user.id,
+                        text=f"soory dgghg")
 
 def get_reply_markup(query, file_id,id3, nyva):
     buttons = [
