@@ -106,20 +106,20 @@ async def answer(bot, query):
     else:
         title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
         result = []
+        text1= f"Mpendwa  {query.from_user.first_name} ,Napenda kutanguliza shukran zangu za dhat kwa kuweza kuniamini kuwa naweza kukupa muv au series, nyimbo n.k...\n\n Mimi ni  robot naweza kutumika kwenye magroup tu ambayo m nipo au ukatafta chochote ukiwa inline kwenye group lolote niwe nipo au sipo ila sehemu nyingine zaid ya magroup siwez kufanya kaz kwa maelezo zaidi jiunge na kikundi chetu cha msaada \n [bonyeza hapa kujiunga](https://t.me/+NlxxLyYIY1hiMWFk)*
         result. append(InlineQueryResultArticle(
                     title=title,
-                    input_message_content=InputTextMessageContent(message_text = "bellow hssan", disable_web_page_preview = True,
+                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True,
                         parse_mode = 'html'),
                     description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi'
 
                    # thumb_url
-                  # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
-                ))
+                  # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))h            ))
         await query.answer(results=result,
                         is_personal = True,
                         cache_time=cache_time,
-                        switch_pm_text="Tafadhali tafta group",
-                        switch_pm_parameter="kenya")
+                        
+                        )
 
 def get_reply_markup(query, file_id, nyva):
     buttons = [
