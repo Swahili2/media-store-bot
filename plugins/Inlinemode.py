@@ -14,6 +14,10 @@ BOT = {}
 async def answer(bot, query):
     """Show search results for given inline query"""
     nyva=BOT.get("username")
+    await bot.send_message(
+            chat_id=cmd.from_user.id,
+            text=f"{query}"
+        )        
     if not nyva:
         botusername=await bot.get_me()
         nyva=botusername.username
