@@ -108,7 +108,7 @@ async def answer(bot, query):
        await query.answer(results=[],
                        is_personal = True,
                        cache_time=cache_time,
-                       switch_pm_text=switch_pm_text,
+                       switch_pm_text="Tafadhali tafta group",
                        switch_pm_parameter="kenya")
 
 def get_reply_markup(query, file_id, nyva):
