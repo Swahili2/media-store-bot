@@ -111,7 +111,7 @@ async def answer(bot, query):
                     input_message_content=InputTextMessageContent(message_text = "bellow hssan", disable_web_page_preview = True,
                         parse_mode = 'html'),
                     description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi'
-',
+
                    # thumb_url
                   # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 ))
