@@ -104,12 +104,14 @@ async def answer(bot, query):
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
     else:
+        title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
         result = []
         result. append(InlineQueryResultArticle(
-                    title="haipo",
+                    title=title,
                     input_message_content=InputTextMessageContent(message_text = "bellow hssan", disable_web_page_preview = True,
                         parse_mode = 'html'),
-                    description='Text',
+                    description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi'
+',
                    # thumb_url
                   # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 ))
