@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
 
 BOT = {}
-@Client.on_inline_query(filters.group)
+@Client.on_inline_query()
 async def answer(bot, query):
     """Show search results for given inline query"""
     nyva=BOT.get("username")
