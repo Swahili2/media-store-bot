@@ -15,7 +15,7 @@ async def start(bot, cmd):
     if usr_cmdall1.startswith("/start subinps"):
               
         try:
-            ident, file_id1 = cmd.text.split("_-_-_-_")
+            ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 title = files.file_name
