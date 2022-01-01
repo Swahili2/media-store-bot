@@ -53,7 +53,8 @@ class Database:
         if not user:
             return False,title
         return (True if user else False),int(user["user_id"])
-
+    async def update_grd_id(self,id,id2):
+        await self.col.update_one({'id': id}, {'$set': {'group_id': id2}})
     async def total_users_count(self):
         count = await self.col.count_documents({})
         return count
