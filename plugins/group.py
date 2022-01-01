@@ -16,7 +16,6 @@ async def start(bot, cmd):
               
         try:
             ident, file_id1 = cmd.text.split("_-_-_-_")
-            file_id, group_id  = file_id1.split('##')
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 title = files.file_name
