@@ -1,6 +1,6 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument,InlineQueryResultPhoto
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument,InlineQueryResultPhoto,InlineQueryResultArticle
 
 
 from utils import get_search_results, is_subscribed, get_size
@@ -113,11 +113,11 @@ async def answer(bot, query):
                    # thumb_url
                   # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 ))
-       await query.answer(results=result,
-                       is_personal = True,
-                       cache_time=cache_time,
-                       switch_pm_text="Tafadhali tafta group",
-                       switch_pm_parameter="kenya")
+        await query.answer(results=result,
+                        is_personal = True,
+                        cache_time=cache_time,
+                        switch_pm_text="Tafadhali tafta group",
+                        switch_pm_parameter="kenya")
 
 def get_reply_markup(query, file_id, nyva):
     buttons = [
