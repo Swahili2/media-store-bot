@@ -59,7 +59,7 @@ async def answer(bot, query):
                 f_caption = f"{title}"
             if id2=='x':
                 if file.file_type != "photo":
-                    reply_markup=get_reply_markup(string,file.file_id,query.chat.id,nyva)
+                    reply_markup=get_reply_markup(string,file.file_id,nyva)
                     results.append(
                         InlineQueryResultCachedDocument(
                             title=title,
@@ -108,7 +108,7 @@ async def answer(bot, query):
                         chat_id=query.from_user.id,
                         text=f"soory dgghg")
 
-def get_reply_markup(query, file_id,id3, nyva):
+def get_reply_markup(query, file_id, nyva):
     buttons = [
         [
             InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")
