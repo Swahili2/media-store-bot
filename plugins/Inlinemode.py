@@ -104,9 +104,12 @@ async def answer(bot, query):
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
     else:
-        await bot.send_message(
-                        chat_id=query.from_user.id,
-                        text=f"soory dgghg")
+        
+       await query.answer(results=[],
+                       is_personal = True,
+                       cache_time=cache_time,
+                       switch_pm_text=switch_pm_text,
+                       switch_pm_parameter="kenya")
 
 def get_reply_markup(query, file_id, nyva):
     buttons = [
