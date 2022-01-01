@@ -13,7 +13,7 @@ BOT = {}
 @Client.on_inline_query()
 async def answer(bot, query):
     """Show search results for given inline query"""
-    if query.chat_type ==("group" or "supergroup"):
+    if query.chat_type =="group" or query.chat_type=="supergroup":
     
         nyva=BOT.get("username")
     
