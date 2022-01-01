@@ -104,8 +104,16 @@ async def answer(bot, query):
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
     else:
-        
-       await query.answer(results=[],
+        result = []
+        result. append(InlineQueryResultArticle(
+                    title=keyword.upper(),
+                    input_message_content=InputTextMessageContent(message_text = "bellow hssan", disable_web_page_preview = True,
+                        parse_mode = 'html'),
+                    description='Text',
+                   # thumb_url
+                  # reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
+                ))
+       await query.answer(results=result,
                        is_personal = True,
                        cache_time=cache_time,
                        switch_pm_text="Tafadhali tafta group",
@@ -118,3 +126,11 @@ def get_reply_markup(query, file_id, nyva):
         ]
         ]
     return InlineKeyboardMarkup(buttons)
+result = InlineQueryResultArticle(
+                    title=keyword.upper(),
+                    input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
+                        parse_mode = 'html'),
+                    description='Text',
+                    thumb_url = thumb,
+                    reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
+                )
