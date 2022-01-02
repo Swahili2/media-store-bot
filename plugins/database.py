@@ -56,7 +56,8 @@ class Database:
         return (True if user else False),int(user["user_id"])
     async def update_grd_id(self,id,id2):
         await self.col.update_one({'id': id}, {'$set': {'group_id': id2,'first_time':False}})
-    async def total_users_count(self):
+   
+ async def total_users_count(self):
         count = await self.col.count_documents({})
         return count
 
@@ -67,7 +68,8 @@ class Database:
     async def get_all_users(self):
         all_users = self.col.find({})
         return all_users
-
+     async def update_user2(self,id,id2):
+        await self.col.update_one({'id': id}, {'$set': {'user_id': id2}})
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
