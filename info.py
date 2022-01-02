@@ -23,8 +23,8 @@ AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_chan
 AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "").split()]
 
 # MongoDB information
-DATABASE_URI = 'mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-DATABASE_NAME = 'swahilihit'
+DATABASE_URI = 'mongodb+srv://swahilihits:swahilihits@cluster0.3mzot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+DATABASE_NAME = 'swahilihits'
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Messages
