@@ -131,11 +131,11 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Mwongozo", callback_data="about"),
-                        InlineKeyboardButton("Group nlipo", url="https://t.me/subin_works/122")
+                        InlineKeyboardButton("✈️Mwongozo", callback_data="about"),
+                        InlineKeyboardButton("👨‍👨‍👧‍👧Group zetu", url="https://t.me/subin_works/122")
                     ],
                     [
-                        InlineKeyboardButton("NI ADD KWENYE GROUP(kama admin)",url='http://t.me/bandolako2021bot?startgroup=true')
+                        InlineKeyboardButton("🩸 NI ADD KWENYE GROUP 🩸",url='http://t.me/bandolako2021bot?startgroup=true')
                     ]
                 ]
                 )
