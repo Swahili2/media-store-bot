@@ -135,7 +135,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("Group nlipo", url="https://t.me/subin_works/122")
                     ],
                     [
-                        InlineKeyboardButton("NI ADD KWENYE GROUP(kama admin)", callback_data="about")
+                        InlineKeyboardButton("NI ADD KWENYE GROUP(kama admin)",url='http://t.me/bandolako2021bot?startgroup=true')
                     ]
                 ]
                 )
