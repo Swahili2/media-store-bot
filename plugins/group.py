@@ -123,14 +123,6 @@ async def start(bot, cmd):
                     )
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-    elif usr_cmdall1.startswith("/start hrm45"):
-        if not await db.is_user_exist(cmd.from_user.id): :
-            try:
-                ident, file_id = cmd.text.split("_-_-_-_")
-                await db.update_user2(cmd.from_user.id,file_id)
-        else:
-            return
-            
     else:
         await cmd.reply_text(
             START_MSG,
