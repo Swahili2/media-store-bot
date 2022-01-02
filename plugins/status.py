@@ -17,6 +17,8 @@ async def handle_user_status(bot, cmd):
             )
 
         ban_status = await db.get_ban_status(chat_id)
+        if cmd.chat.type == "private":
+            return
         if ban_status["is_banned"]:
             if (
                     datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
