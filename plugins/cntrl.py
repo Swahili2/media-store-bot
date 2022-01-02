@@ -237,7 +237,7 @@ async def ban(c,m):
 async def addconnection(client,message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
-        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niumge.Kisha ka enable tena\nAu kama unatak uendelee kuwa anonymous admin copy huu  ujumbe (`**__/niunge {message.chat.id}__**`)kisha kautume private./n")
+        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena\nAu kama unatak uendelee kuwa anonymous admin copy huu  ujumbe -> `/niunge {message.chat.id}` \nkisha kautume private")
     chat_type = message.chat.type
 
     if chat_type == "private":
