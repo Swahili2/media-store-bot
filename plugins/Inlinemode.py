@@ -75,16 +75,16 @@ async def answer(bot, query):
                             caption=f_caption,
                             reply_markup=reply_markup))      
         if results:
-            switch_pm_text = f"{emoji.FILE_FOLDER} Results"
-            if string:
-                switch_pm_text += f" for {string}"
-
+            title =f"Mpendwa {query.from_user.first_name}"
+            result. append(InlineQueryResultArticle(
+                    title=title,
+                    input_message_content=InputTextMessageContent(message_text = f"Mpendwa **{query. from_user.first_name}**\nKama movie yako haipo hakikisha kwenye orodha zetu kwa kutuma neno orodha au kwa uharaka zaidi tuma neno movie au series n.k kisha kisha aa kwa muv au series n.k zinazoanziwa na a au bb zinazoanziwa na b ,Ukikosa kabisa tumie hill Nina la muv au series au chochote kile kilichokesekana kwenye huduma zetu [bonyeza hapa kutuma] ()", disable_web_page_preview = True),
+                    description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi')
+                )
             try:
                 await query.answer(results=results,
                                is_personal = True,
                                cache_time=cache_time,
-                               switch_pm_text=switch_pm_text,
-                               switch_pm_parameter="start",
                                next_offset=str(next_offset))
             except Exception as e:
                 logging.exception(str(e))
@@ -109,8 +109,7 @@ async def answer(bot, query):
         text1= f"Mpendwa  {query.from_user.first_name} ,Napenda kutanguliza shukran zangu za dhat kwa kuweza kuniamini kuwa naweza kukupa muv au series, nyimbo n.k...\n\n Mimi ni  robot naweza kutumika kwenye magroup tu ambayo m nipo au ukatafta chochote ukiwa inline kwenye group lolote niwe nipo au sipo ila sehemu nyingine zaid ya magroup siwez kufanya kaz kwa maelezo zaidi jiunge na kikundi chetu cha msaada \n [bonyeza hapa kujiunga](https://t.me/+NlxxLyYIY1hiMWFk)"
         result. append(InlineQueryResultArticle(
                     title=title,
-                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True,
-                        parse_mode = 'html'),
+                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
                     description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi')
                 )
                    # thumb_url
