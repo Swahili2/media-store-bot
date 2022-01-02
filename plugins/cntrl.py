@@ -292,13 +292,15 @@ async def addconnection(client,message):
                         parse_mode="md"
                     )
             elif user_id2 == userid :
+                
                 await message.reply_text(
                     "Samahan hili group tayar umeshaliunga kama unahitaj kulitoa tuma command /ondoa",
                     quote=True
                 )
             else:
+                ttli = await client.get_users(user_id2)
                 await message.reply_text(
-                    f"Samahan hili group tayar limeshaunganishwa na admin **{message.from_user.first_name}** Kama mnataka mabadiliko tafadhari mcheki msimiz wangu inbox @hrm45 ili awabadilishie!",
+                    f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Kama mnataka mabadiliko tafadhari mcheki msimiz wangu inbox @hrm45 ili awabadilishie!",
                     quote=True
                 )
         else:
