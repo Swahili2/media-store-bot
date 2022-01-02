@@ -131,7 +131,7 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("✈️Mwongozo", callback_data="about"),
+                        InlineKeyboardButton("✈️ About", callback_data="about"),
                         InlineKeyboardButton("👨‍👨‍👧‍👧Group zetu", url="https://t.me/subin_works/122")
                     ],
                     [
@@ -295,14 +295,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
                 return
         elif query.data == "about":
-            buttons = [
-                [
-                    InlineKeyboardButton('Update Channel', url='https://t.me/subin_works'),
-                    InlineKeyboardButton('Source Code', url='https://github.com/subinps/Media-Search-bot')
-                ]
-                ]
-            await query.message.edit(text="Source Code : <a href='https://github.com/subinps/Media-Search-bot'>Click here</a>\nUpdate Channel : <a href='https://t.me/subin_works'>XTZ Bots</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-
+            await query.answer(text='Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama Luna makosa tujulishe tuboreshe')
+            
         elif query.data == "pages":
             await query.answer()
         elif query.data == "close":
