@@ -13,7 +13,7 @@ BOT = {}
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
-              
+        await handle_user_status(bot,cmd)   
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
