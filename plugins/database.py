@@ -17,6 +17,7 @@ class Database:
             title = title,
             link_inv = link,
             total_m = total,
+            amount = 0,
             phone_no = 0
         )
 
@@ -24,8 +25,6 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            first_time = True,
-            user_id = 0,
             group_id = 0,
             email_id = hramamohamed@gmail.com,
             ban_status=dict(
@@ -55,7 +54,7 @@ class Database:
             return False,title
         return (True if user else False),int(user["user_id"])
     async def update_grd_id(self,id,id2):
-        await self.col.update_one({'id': id}, {'$set': {'group_id': id2,'first_time':False}})
+        await self.col.update_one({'id': id}, {'$set': {'group_id': id2}})
    
     async def total_users_count(self):
         count = await self.col.count_documents({})
@@ -68,8 +67,7 @@ class Database:
     async def get_all_users(self):
         all_users = self.col.find({})
         return all_users
-     async def update_user2(self,id,id2):
-        await self.col.update_one({'id': id}, {'$set': {'user_id': id2 ,'first_time': False}})
+    
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
