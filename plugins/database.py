@@ -24,7 +24,7 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            first_time=True,
+            first_time = True,
             user_id = 0,
             group_id = 0,
             email_id = hramamohamed@gmail.com,
@@ -55,7 +55,7 @@ class Database:
             return False,title
         return (True if user else False),int(user["user_id"])
     async def update_grd_id(self,id,id2):
-        await self.col.update_one({'id': id}, {'$set': {'group_id': id2}})
+        await self.col.update_one({'id': id}, {'$set': {'group_id': id2},{'first_time':False}})
     async def total_users_count(self):
         count = await self.col.count_documents({})
         return count
