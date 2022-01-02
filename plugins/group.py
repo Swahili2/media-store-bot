@@ -295,7 +295,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
                 return
         elif query.data == "about":
-            await query.answer(text='Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama Luna makosa tujulishe tuboreshe')
+            await query.answer('Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama kuna makosa tujulishe tuboreshe',show_alert=True)
             
         elif query.data == "pages":
             await query.answer()
