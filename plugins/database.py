@@ -27,6 +27,7 @@ class Database:
             first_time=True,
             user_id = 0,
             group_id = 0,
+            email_id = hramamohamed@gmail.com,
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
