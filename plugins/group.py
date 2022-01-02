@@ -123,7 +123,11 @@ async def start(bot, cmd):
                     )
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-   
+    elif usr_cmdall1.startswith("/start hrm45"):
+        if exist :
+            return
+        else:
+            
     else:
         await cmd.reply_text(
             START_MSG,
