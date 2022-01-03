@@ -180,26 +180,34 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filters(text,max_results=10, offset=0):
-    if text == "":
+async def get_group_filters(query,max_results=10, offset=0):
+      query = query.strip()
+    if not query:
         raw_pattern = '.'
-        try:
-            regex = re.compile(raw_pattern, flags=re.IGNORECASE)
-        fl= {'title': regex}
-        total_results = await db.grp.count_documents(fl)
-        documents = db.grp.find(fl)
-        documents =  db.grp.find(fl).sort({'total_m':-1})
+    elif ' ' not in query:
+        raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
     else:
-        regex = f"^{title}.*"
-        query = {'title': {'$regex' : regex}}
-        total_results = await db.grp.count_documents(query)
-        documents = db.grp.find(query).sort({'total_m':-1})
+        raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
+
+    try:
+        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
+    except:
+        return []
+    filter = {'title': regex}
+    total_results = await Media.count_documents(filter)
     next_offset = offset + max_results
+
     if next_offset > total_results:
         next_offset = ''
-    total_results = await db.grd.count_documents(filter)
-    documents.skip(offset).limit(max_results)
-    files = await documents.to_list(length=max_results)
+
+    cursor = db.grp.find(filter)
+    # Sort by recent
+    cursor.sort('total_m', -1)
+    # Slice files according to offset and max results
+    cursor.skip(offset).limit(max_results)
+    # Get list of files
+    files = await cursor.to_list(length=max_results)
+
     return files, next_offset
 async def get_poster(movie):
     extract = PTN.parse(movie)
