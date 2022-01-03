@@ -17,6 +17,7 @@ class Database:
             title = title,
             link_inv = link,
             total_m = total,
+            thumb_url = thumb_url,
             amount = 0,
             phone_no = 0
         )
@@ -39,8 +40,8 @@ class Database:
         user = self.new_user(id)
         await self.col.insert_one(user)
 
-    async def add_group(self, id,title,total,link,id2):
-        group = self.new_group(id,title,total,link,id2)
+    async def add_group(self, id,title,total,link,id2 ,thum_url):
+        group = self.new_group(id,title,total,link,id2,thumb_url)
         await self.grp.insert_one(group)
 
     async def is_user_exist(self, id):
