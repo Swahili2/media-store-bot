@@ -117,9 +117,9 @@ async def answer(bot, query):
              result. append(InlineQueryResultArticle(
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                        description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi')
-                        thumb_url=file.thumb
-                        reply_markup=InlineKeyboardMarkup(InlineKeyboardButton('📤 join group', url=file.link)
+                        description=f'Naweza kufanya kazi kwenye magrup tu \nBonyeza hapa kupata maelezo zaidi'),
+                        thumb_url=file.thumb,
+                        reply_markup=InlineKeyboardMarkup(InlineKeyboardButton('📤 join group', url=file.link))
                      ))
         await query.answer(results=result,
                         is_personal = True,
