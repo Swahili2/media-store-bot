@@ -111,7 +111,7 @@ async def answer(bot, query):
                                                   max_results=10,
                                                   offset=offset)
 
-        for file in files:
+       # for file in files:
              
         title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
         result = []
