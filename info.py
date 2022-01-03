@@ -25,7 +25,7 @@ AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "").split()]
 # MongoDB information
 DATABASE_URI = 'mongodb+srv://swahilihits:swahilihits@cluster0.3mzot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 DATABASE_NAME = 'swahilihits'
-COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 # Messages
 default_start_msg = """
