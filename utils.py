@@ -180,6 +180,17 @@ async def is_subscribed(bot, query):
             return True
 
     return False
+async def get_group_filter(text):
+    if text == "":
+        documents = db.col.find()
+        doc_list = list(documents)
+        doc_list.reverse()
+        return doc_list[:50]
+    else:
+        regex = f"^{text}.*"
+        query = {'text': {'$regex' : regex}}
+        documents = db.col.find(query).sort('text', 1).limit(50)
+        return documents
 
 async def get_poster(movie):
     extract = PTN.parse(movie)
