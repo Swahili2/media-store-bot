@@ -286,7 +286,7 @@ async def upload_group(client, thumb,message):
   msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   img_path = (f"./DOWNLOADS/hrm45.jpg")
   img_path = await client.download_media(message=thumb, file_name=img_path)
-  try;
+  try:
     tlink = upload_file(img_path)
   except:
     await msg.edit_text("`Something went wrong`")
