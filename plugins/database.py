@@ -27,7 +27,7 @@ class Database:
             id=id,
             join_date=datetime.date.today().isoformat(),
             group_id = 0,
-            email_id = hramamohamed@gmail.com,
+            email_id = 'hramamohamed@gmail.com',
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
