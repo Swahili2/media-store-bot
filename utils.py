@@ -284,7 +284,7 @@ def unpack_new_file_id(new_file_id):
     return file_id, file_ref
 async def upload_group(client, thumb,message):
   img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
-  if thumb.big_file_id:
+  if thumb:
     img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
   else:
     return None
