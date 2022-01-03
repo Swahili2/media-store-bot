@@ -132,7 +132,7 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("✈️ About", callback_data="about"),
-                        InlineKeyboardButton("👨‍👨‍👧‍👧Group zetu", url="https://t.me/subin_works/122")
+                        InlineKeyboardButton("👨‍👨‍👧‍👧Group zetu", switch_inline_query_current_chat='')
                     ],
                     [
                         InlineKeyboardButton("🩸 NI ADD KWENYE GROUP 🩸",url='http://t.me/bandolako2021bot?startgroup=true')
