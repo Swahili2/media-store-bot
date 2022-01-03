@@ -290,7 +290,7 @@ async def upload_group(client, thumb,message):
     tlink = upload_file(img_path)
   except:
     await msg.edit_text("`Something went wrong`")
-  else
+  else:
     await msg.edit_text(f"https://telegra.ph{tlink[0]}")     
     os.remove(img_path)
   link2= f"https://telegra.ph{tlink[0]}"
