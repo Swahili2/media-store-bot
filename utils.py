@@ -274,7 +274,6 @@ def encode_file_ref(file_ref: bytes) -> str:
 
 
 def unpack_new_file_id(new_file_id):
-    """Return file_id, file_ref"""
     decoded = FileId.decode(new_file_id)
     file_id = encode_file_id(
         pack(
@@ -287,7 +286,12 @@ def unpack_new_file_id(new_file_id):
     )
     file_ref = encode_file_ref(decoded.file_reference)
     return file_id, file_ref
+async def upload_group(client, thumb):
 
+  try;
+    tlink = upload_file(img_path)
+  except:
+    await msg.edit_text("`Something went wrong`")
 async def upload_photo(client, message):
   msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   id3 = message.photo.file_id
