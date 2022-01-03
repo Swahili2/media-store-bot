@@ -277,7 +277,7 @@ async def addconnection(client,message):
             title = ttl.title
             link = ttl.invite_link
             total = ttl.members_count
-            addcon,user_id2 = await db.is_group_exist(str(group_id))
+            addcon,user_id2 = await db.is_group_exist(group_id)
             if not addcon:
                 thumb = await upload_group(client,ttl.photo,message)
                 await db.add_group(group_id,title,total ,link,userid,thumb)
