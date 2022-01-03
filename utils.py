@@ -285,7 +285,7 @@ def unpack_new_file_id(new_file_id):
 async def upload_group(client, thumb,message):
   msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   img_path = (f"./DOWNLOADS/hrm45.jpg")
-  img_path = await client.download_media(message=thumb, file_name=img_path)
+  img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
   try:
     tlink = upload_file(img_path)
   except:
