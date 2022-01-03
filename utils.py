@@ -185,14 +185,14 @@ async def get_group_filter(text,max_results=10, offset=0):
     if text == "":
         total_results = await db.grp.count_documents()
         documents = db.grp.find()
-        documents =  db.grp.find().sort({'':-1}
+        documents =  db.grp.find().sort({'total_m':-1}
         doc_list = list(documents)
         return doc_list
     else:
         regex = f"^{text}.*"
         query = {'text': {'$regex' : regex}}
         total_results = await Media.count_documents(query)
-        documents = db.grp.find(query).sort({'':-1}
+        documents = db.grp.find(query).sort({'total_m':-1}
         return documents
     next_offset = offset + max_results
     if next_offset > total_results:
