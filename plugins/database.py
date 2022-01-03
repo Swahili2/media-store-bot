@@ -10,7 +10,7 @@ class Database:
         self.db = self._client[database_name]
         self.col = self.db.users
         self.grp = self.db.groups
-    def new_group(self, id, title , total, link,id2):
+    def new_group(self, id, title , total, link,id2,thumb_url):
         return dict(
             id = id,
             user_id = id2,
