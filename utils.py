@@ -180,7 +180,7 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filters(query,max_results=10, offset=0):
+async def get_group_filters(query,max_results=10, offset=0, bot):
     query = query.strip()
     if not query:
         raw_pattern = '.'
@@ -192,6 +192,7 @@ async def get_group_filters(query,max_results=10, offset=0):
     try:
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
+        await bot.send_message(text='error regex',chat_id=859704527)
         return []
     filter = {'title': regex}
     total_results = await db.grp.count_documents(filter)
@@ -200,7 +201,7 @@ async def get_group_filters(query,max_results=10, offset=0):
     if next_offset > total_results:
         next_offset = ''
 
-    cursor = db.grp.find({})
+    cursor = db.grp.find(filter)
     # Sort by recent
     cursor.sort('total_m', -1)
     # Slice files according to offset and max results
