@@ -182,13 +182,17 @@ async def is_subscribed(bot, query):
     return False
 async def get_group_filters(text,max_results=10, offset=0):
     if text == "":
-        total_results = await db.grp.count_documents()
-        documents = db.grp.find()
-        documents =  db.grp.find().sort({'total_m':-1})
+        raw_pattern = '.'
+        try:
+            regex = re.compile(raw_pattern, flags=re.IGNORECASE)
+        fl= {'title': regex}
+        total_results = await db.grp.count_documents(fl)
+        documents = db.grp.find(fl)
+        documents =  db.grp.find(fl).sort({'total_m':-1})
     else:
-        regex = f"^{text}.*"
-        query = {'text': {'$regex' : regex}}
-        total_results = await Media.count_documents(query)
+        regex = f"^{title}.*"
+        query = {'title': {'$regex' : regex}}
+        total_results = await db.grp.count_documents(query)
         documents = db.grp.find(query).sort({'total_m':-1})
     next_offset = offset + max_results
     if next_offset > total_results:
