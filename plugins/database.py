@@ -40,7 +40,7 @@ class Database:
         user = self.new_user(id)
         await self.col.insert_one(user)
 
-    async def add_group(self, id,title,total,link,id2 ,thum_url):
+    async def add_group(self, id,title,total,link,id2 ,thumb_url):
         group = self.new_group(id,title,total,link,id2,thumb_url)
         await self.grp.insert_one(group)
 
