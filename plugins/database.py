@@ -10,14 +10,14 @@ class Database:
         self.db = self._client[database_name]
         self.col = self.db.users
         self.grp = self.db.groups
-    def new_group(self, id, title , total, link,id2,thumb_url):
+    def new_group(self, id, title , total, link,id2,thumb):
         return dict(
             id = id,
             user_id = id2,
             title = title,
             link_inv = link,
             total_m = total,
-            thumb_url = thumb_url,
+            thumb = thumb,
             amount = 0,
             phone_no = 0
         )
