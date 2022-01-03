@@ -283,15 +283,17 @@ def unpack_new_file_id(new_file_id):
     file_ref = encode_file_ref(decoded.file_reference)
     return file_id, file_ref
 async def upload_group(client, thumb,message):
-  msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
-  img_path = (f"./DOWNLOADS/hrm45.jpg")
-  img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
+  img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
+  if thumb.big_file_id:
+    img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
+  else:
+    return None
   try:
     tlink = upload_file(img_path)
   except:
     await msg.edit_text("`Something went wrong`")
-  else:
-    await msg.edit_text(f"https://telegra.ph{tlink[0]}")     
+    return None
+  else: 
     os.remove(img_path)
   link2= f"https://telegra.ph{tlink[0]}"
   return link2
