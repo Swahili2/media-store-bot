@@ -274,23 +274,22 @@ async def addconnection(client,message):
         st = await client.get_chat_member(group_id, "me")
         if st.status == "administrator":
             ttl = await client.get_chat(group_id)
-            thumb = await upload_group(client,ttl.photo,message)
-            await message.reply_text(thumb)
             title = ttl.title
             link = ttl.invite_link
             total = ttl.members_count
             addcon,user_id2 = await db.is_group_exist(str(group_id))
             if not addcon:
+                thumb = await upload_group(client,ttl.photo,message)
                 await db.add_group(group_id,title,total ,link,userid,thumb)
                 await message.reply_text(
                     f"Sucessfully connected to **{title}**\n Sasa unaweza kuangalia maendeleo ya group lako kwa kutuma neno `group` ukiwa private!",
                     quote=True,
                     parse_mode="md"
                 )
-                if chat_type in ["group", "supergroup"]:
+                if chat_type in ["group", "supergroup","private"]:
                     await client.send_message(
                         userid,
-                        f"Asante kwa kutuamini umefanikiwa kuunganisha group \n **__{title}__** \n tutakupatia ofa  ya kila mteja atakae lipia kifurush kupitia grup lako kwa mara ya kwanza kupitia. \nUtapata tsh 1000 kwa kila mteja. kuona maendeleo ya group lako tuma neno `group' **tutakuwa tunakutumia ujumbe endapo mteja akilipa na Jinsi ya kupata mshiko wako**!",
+                        f"Asante kwa kutuamini umefanikiwa kuunganisha group \n **__{title}__** \n\nTutakupatia ofa  ya kila mteja kila  atakapo lipia kifurush kupitia grup lako \n\nUtapata tsh 1000 kwa kila mteja. kuona maendeleo ya group lako tuma neno `group' **tutakuwa tunakutumia ujumbe endapo mteja akilipa na Jinsi ya kupata mshiko wako**!",
                         parse_mode="md"
                     )
             elif user_id2 == userid :
