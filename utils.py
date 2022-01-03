@@ -181,18 +181,26 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filter(text):
+async def get_group_filter(text,max_results=10, offset=0):
     if text == "":
+        total_results = await db.grp.count_documents()
         documents = db.grp.find()
+        documents =  db.grp.find().sort({'':-1}
         doc_list = list(documents)
-        doc_list.reverse()
-        return doc_list[:50]
+        return doc_list
     else:
         regex = f"^{text}.*"
         query = {'text': {'$regex' : regex}}
-        documents = db.grp.find(query).sort('text', 1).limit(50)
+        total_results = await Media.count_documents(query)
+        documents = db.grp.find(query).sort({'':-1}
         return documents
-
+    next_offset = offset + max_results
+    if next_offset > total_results:
+        next_offset = ''
+    total_results = await Media.count_documents(filter)
+    cursor.skip(offset).limit(max_results)
+    files = await cursor.to_list(length=max_results)
+    return files, next_offset
 async def get_poster(movie):
     extract = PTN.parse(movie)
     try:
