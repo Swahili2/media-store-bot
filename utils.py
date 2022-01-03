@@ -194,7 +194,7 @@ async def get_group_filters(query,max_results=10, offset=0):
     except:
         return []
     filter = {'title': regex}
-    total_results = await Media.count_documents(filter)
+    total_results = await db.grp.count_documents(filter)
     next_offset = offset + max_results
 
     if next_offset > total_results:
