@@ -181,7 +181,7 @@ async def is_subscribed(bot, query):
 
     return False
 async def get_group_filters(query,max_results=10, offset=0):
-      query = query.strip()
+     query = query.strip()
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
