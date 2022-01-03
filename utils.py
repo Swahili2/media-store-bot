@@ -202,7 +202,7 @@ async def get_group_filters(query,max_results=10, offset=0):
 
     cursor = db.grp.find(filter)
     # Sort by recent
-   # cursor.sort('total_m', -1)
+    cursor.sort('total_m', -1)
     # Slice files according to offset and max results
     cursor.skip(offset).limit(max_results)
     # Get list of files
