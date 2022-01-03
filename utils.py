@@ -180,7 +180,7 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filter(text,max_results=10, offset=0):
+async def get_group_filters(text,max_results=10, offset=0):
     if text == "":
         total_results = await db.grp.count_documents()
         documents = db.grp.find()
