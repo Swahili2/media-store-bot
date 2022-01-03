@@ -109,7 +109,7 @@ async def answer(bot, query):
         offset = int(query.offset or 0)
         files, next_offset = await get_group_filters(string,
                                                   max_results=10,
-                                                  offset=offset)
+                                                  offset=offset,bot)
         await bot.send_message(text=f'{files}',chat_id=query.from_user.id)
         for file in files:
              title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
