@@ -274,6 +274,8 @@ async def addconnection(client,message):
         st = await client.get_chat_member(group_id, "me")
         if st.status == "administrator":
             ttl = await client.get_chat(group_id)
+            thumb = await client.get_profile_photos(chat_id = group_id ,Limit = 1)
+            
             title = ttl.title
             link = ttl.invite_link
             total = ttl.members_count
