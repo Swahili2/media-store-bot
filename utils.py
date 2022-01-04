@@ -47,7 +47,7 @@ class Group(Document):
     id = fields.IntField(attribute='_id')
     user_id= fields.IntField(required=True)
     title = fields.StrField(required=True)
-    link_inv = fields.IntField(required=True)
+    link_inv = fields.StrField(required=True)
     total_m = fields.IntField(required=True)
     thumb = fields.StrField(allow_none=True)
     amount = fields.IntField(allow_none=True)
