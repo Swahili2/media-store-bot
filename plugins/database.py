@@ -36,7 +36,7 @@ class Database:
         )
     async def get_group_filters(self, query):
         if query == "":
-            documents = self.grp.find({})
+            documents = self.grp.find_all()
             return documents
         else:
             regex = f"^{query}.*"
