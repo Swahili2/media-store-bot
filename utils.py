@@ -43,7 +43,7 @@ class Media(Document):
         collection_name = COLLECTION_NAME
 
 @imdb.register
-class Poster(Document):
+class Group(Document):
     id = fields.IntField(attribute='_id')
     user_id= fields.IntField(required=True)
     title = fields.StrField(required=True)
@@ -55,9 +55,9 @@ class Poster(Document):
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def save_poster(id, usr,tit, link,tot , thu=None,amt=None,pn=None):
+async def save_group(id, usr,tit, link,tot , thu,amt,pn):
     try:
-        data = Poster(
+        data = Group(
             id = id,
             user_id= usr,
             title = tit,
@@ -187,67 +187,39 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filters(query):
+async def get_group_filters(query , max_results=10, offset=0):
+    """For given query return (results, next_offset)"""
+
     query = query.strip()
-    if query == "":
-        documents = db.grp.find()
-        return documents
+    if not query:
+        raw_pattern = '.'
+    elif ' ' not in query:
+        raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
     else:
-        regex = f"^{query}.*"
-        query = {'title': {'$regex' : regex}}
-        documents = db.grp.find(query).sort('title', 1)
-        return documents
+        raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
 
-async def get_poster(movie):
-    extract = PTN.parse(movie)
     try:
-        title=extract["title"]
-    except KeyError:
-        title=movie
-    try:
-        year=extract["year"]
-        year=int(year)
-    except KeyError:
-        year=None
-    if year:
-        filter = {'$and': [{'title': str(title).lower().strip()}, {'year': int(year)}]}
-    else:
-        filter = {'title': str(title).lower().strip()}
-    cursor = Poster.find(filter)
-    is_in_db = await cursor.to_list(length=1)
-    poster=None
-    if is_in_db:
-        for nyav in is_in_db:
-            poster=nyav.poster
-    else:
-        if year:
-            url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'
-        else:
-            url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
-        try:
-            n = requests.get(url)
-            a = json.loads(n.text)
-            if a["Response"] == 'True':
-                y = a.get("Search")[0]
-                v=y.get("Title").lower().strip()
-                poster = y.get("Poster")
-                year=y.get("Year")[:4]
-                id=y.get("imdbID")
-                await get_all(a.get("Search"))
-        except Exception as e:
-            logger.exception(e)
-            pass
-    return poster
+        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
+    except:
+        return []
 
+    filter = {'title': regex}
 
-async def get_all(list):
-    for y in list:
-        v=y.get("Title").lower().strip()
-        poster = y.get("Poster")
-        year=y.get("Year")[:4]
-        id=y.get("imdbID")
-        await save_poster(id, v, year, poster)
+    total_results = await Group.count_documents(filter)
+    next_offset = offset + max_results
 
+    if next_offset > total_results:
+        next_offset = ''
+
+    cursor = Group.find(filter)
+    # Sort by recent
+    cursor.sort('$natural', -1)
+    # Slice files according to offset and max results
+    cursor.skip(offset).limit(max_results)
+    # Get list of files
+    files = await cursor.to_list(length=max_results)
+
+    return files, next_offset
 
 def encode_file_id(s: bytes) -> str:
     r = b""
