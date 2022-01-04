@@ -180,36 +180,18 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filters(query,max_results=10, offset=0, bot):
+async def get_group_filters(query):
     query = query.strip()
-    if not query:
-        raw_pattern = '.'
-    elif ' ' not in query:
-        raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
+    if query == "":
+        documents = db.grp.find()
+        doc_list = list(documents)
+        return doc_list
     else:
-        raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
+        regex = f"^{query}.*"
+        query = {'title': {'$regex' : regex}}
+        documents = db.grp.find(query).sort('title', 1)
+        return documents
 
-    try:
-        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
-    except:
-        await bot.send_message(text='error regex',chat_id=859704527)
-        return []
-    filter = {'title': regex}
-    total_results = await db.grp.count_documents(filter)
-    next_offset = offset + max_results
-
-    if next_offset > total_results:
-        next_offset = ''
-
-    cursor = db.grp.find(filter)
-    # Sort by recent
-    cursor.sort('total_m', -1)
-    # Slice files according to offset and max results
-    cursor.skip(offset).limit(max_results)
-    # Get list of files
-    files = await cursor.to_list(length=max_results)
-
-    return files, next_offset
 async def get_poster(movie):
     extract = PTN.parse(movie)
     try:
