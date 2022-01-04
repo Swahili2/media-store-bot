@@ -63,7 +63,7 @@ async def save_group(id, usr,tit, link,tot , thu,amt,pn):
             title = tit,
             link_inv = link,
             total_m = tot ,
-            thumb =th ,
+            thumb =thu,
             amount = amt,
             phone_no = pn
         )
