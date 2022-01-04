@@ -35,7 +35,7 @@ class Database:
                 ban_reason=''
             )
         )
-    async def get_group_filters(query):
+    async def get_group_filters(self, query):
         query = query.strip()
         if query == "":
             documents = self.grp.find()
