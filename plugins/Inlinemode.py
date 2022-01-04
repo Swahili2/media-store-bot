@@ -1,4 +1,5 @@
 import logging
+from plugins. database import db
 from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument,InlineQueryResultPhoto,InputTextMessageContent,InlineQueryResultArticle
 
@@ -107,7 +108,7 @@ async def answer(bot, query):
         result = []
         string = query.query.strip()
         offset = int(query.offset or 0)
-        files = await get_group_filters(string)
+        files = await db.get_group_filters(string)
         await bot.send_message(text=f'{files}',chat_id=query.from_user.id)
         for file in files:
              title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
