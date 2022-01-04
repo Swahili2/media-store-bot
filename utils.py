@@ -184,8 +184,7 @@ async def get_group_filters(query):
     query = query.strip()
     if query == "":
         documents = db.grp.find()
-        doc_list = list(documents)
-        return doc_list
+        return documents
     else:
         regex = f"^{query}.*"
         query = {'title': {'$regex' : regex}}
