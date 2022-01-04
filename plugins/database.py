@@ -2,11 +2,16 @@ import datetime
 import motor.motor_asyncio
 from info import DATABASE_NAME, DATABASE_URI
 
+import pymongo
+
+#dbclient = (DB_URI)
+#database = dbclient[DB_NAME]
 
 class Database:
 
     def __init__(self, uri, database_name):
-        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
+        #self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
+        self._client = pymongo.MongoClient(uri)
         self.db = self._client[database_name]
         self.col = self.db.users
         self.grp = self.db.groups
