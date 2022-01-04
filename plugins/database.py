@@ -37,12 +37,15 @@ class Database:
     async def get_group_filters(self, query):
         if query == "":
             documents = self.grp.find({})
-            documents = await documents.to_list(length=2)
+            count = await self.grp.count_documents({})
+            documents = await documents.to_list(length=count)
             return documents
         else:
             regex = f"^{query}.*"
             query = {'title': {'$regex' : regex}}
+            count = await self.grp.count_documents(query)
             documents = self.grp.find(query)
+            documents = await documents.to_list(length = count)
             return documents
 
     async def add_user(self, id):
