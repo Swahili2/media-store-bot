@@ -36,14 +36,13 @@ class Database:
             )
         )
     async def get_group_filters(self, query):
-        query = query.strip()
         if query == "":
-            documents = self.grp.find()
+            documents = self.grp.find({})
             return documents
         else:
             regex = f"^{query}.*"
             query = {'title': {'$regex' : regex}}
-            documents = self.grp.find(query).sort('title', 1)
+            documents = self.grp.find(query)
             return documents
 
     async def add_user(self, id):
