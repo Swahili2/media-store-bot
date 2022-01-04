@@ -44,31 +44,38 @@ class Media(Document):
 
 @imdb.register
 class Poster(Document):
-    imdb_id = fields.StrField(attribute='_id')
-    title = fields.StrField()
-    poster = fields.StrField()
-    year= fields.IntField(allow_none=True)
-
+    id = fields.IntField(attribute='_id')
+    user_id= fields.IntField(required=True)
+    title = fields.StrField(required=True)
+    link_inv = fields.IntField(required=True)
+    total_m = fields.IntField(required=True)
+    thumb = fields.StrField(allow_none=True)
+    amount = fields.IntField(allow_none=True)
+    phone_no = fields.StrField(allow_none=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def save_poster(imdb_id, title, year, url):
+async def save_poster(id, usr,tit, link,tot , thu=None,amt=None,pn=None):
     try:
         data = Poster(
-            imdb_id=imdb_id,
-            title=title,
-            year=int(year),
-            poster=url
+            id = id,
+            user_id= usr,
+            title = tit,
+            link_inv = link,
+            total_m = tot ,
+            thumb =th ,
+            amount = amt,
+            phone_no = pn
         )
     except ValidationError:
-        logger.exception('Error occurred while saving poster in database')
+        logger.exception('Error occurred while saving group in database')
     else:
         try:
             await data.commit()
         except DuplicateKeyError:
             logger.warning("already saved in database")
         else:
-            logger.info("Poster is saved in database")
+            logger.info("group is saved in database")
 
 async def save_file(media):
     """Save file in database"""
