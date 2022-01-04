@@ -4,7 +4,7 @@ from plugins.database import db
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
-from utils import Media, get_file_details, get_size, save_file, get_filter_results,upload_photo,upload_group
+from utils import Media,Group,save_group, get_file_details, get_size, save_file, get_filter_results,upload_photo,upload_group
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 BUTTONS={}
@@ -280,7 +280,7 @@ async def addconnection(client,message):
             addcon,user_id2 = await db.is_group_exist(group_id)
             if not addcon:
                 thumb = await upload_group(client,ttl.photo,message)
-                await db.add_group(group_id,title,total ,link,userid,thumb)
+                await save_group(group_id,title,total ,link,userid,thumb,0,0)
                 await message.reply_text(
                     f"Sucessfully connected to **{title}**\n Sasa unaweza kuangalia maendeleo ya group lako kwa kutuma neno `group` ukiwa private!",
                     quote=True,
