@@ -280,7 +280,7 @@ async def addconnection(client,message):
             addcon,user_id2 = await db.is_group_exist(group_id)
             if not addcon:
                 thumb = await upload_group(client,ttl.photo,message)
-                await save_group(group_id,title,total ,link,userid,thumb,0,0)
+                await save_group(group_id,userid,title,link,total,thumb,None,None)
                 await message.reply_text(
                     f"Sucessfully connected to **{title}**\n Sasa unaweza kuangalia maendeleo ya group lako kwa kutuma neno `group` ukiwa private!",
                     quote=True,
