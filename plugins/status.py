@@ -1,9 +1,7 @@
 
 import datetime
 from info import DATABASE_URI, DATABASE_NAME, CHANNELS
-from plugins.database import Database
-
-db = Database(DATABASE_URI, DATABASE_NAME)
+from plugins.database import db
 
 
 async def handle_user_status(bot, cmd):
