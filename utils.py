@@ -194,7 +194,7 @@ async def get_group_filters(query , max_results=10, offset=0):
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
-        raw_pattern = r'^' + query + r'.*'
+        raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
 
