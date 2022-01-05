@@ -30,8 +30,13 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 # Messages
 default_start_msg = """
-**Hi, I'm Media Search Bot or ypu can call me as Auto-Filter Bot**
-Here you can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.
+**Hi,Mimi in robot niite swahili robot**
+Unaweza ukapata movie,series,miziki,vichekesho na huduma nyingine kibao\n
+Kupata vyote hivi ni add kwenye group au chagua kwenye group zetu kwa kubonyeza button ya grup zetu kisha chagua upendalo.\n
+Nb.m natumika tu kwenye group nje ya hapo siwez kufanya utaniona kama boshen tu
+Ofa zipo mbili kwa atakaye ni  add kwenye group ya kwanza ntaongeza grip lako kwenye list yng
+Ya pili ni  baada ya kuniunga utaiona we mwenyewe hii ni  siri baina yangu na admin.\n
+**Karibun sana Swahili group**
 """
 START_MSG = environ.get('START_MSG', default_start_msg)
 
