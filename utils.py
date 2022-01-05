@@ -13,14 +13,14 @@ import os
 import PTN
 import requests
 import json
-from info import db2, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
+from info import DB2, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
 
 COLLECTION_NAME_2="groups"
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-instance = Instance.from_db(db2)
-imdb=Instance.from_db(db2)
+instance = Instance.from_db(DB2)
+imdb=Instance.from_db(DB2)
 
 @instance.register
 class Media(Document):
