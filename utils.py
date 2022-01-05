@@ -171,8 +171,8 @@ async def get_file_details(query):
 async def is_group_exist(query):
     filter = {'id': query}
     cursor = Group.find(filter)
-    filedetails = await cursor.to_list(length=1)
-    return True if filedetails else False , filedetails
+    groupdetails = await cursor.to_list(length=1)
+    return groupdetails
 
 
 async def is_subscribed(bot, query):
