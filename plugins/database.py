@@ -1,5 +1,5 @@
 import datetime
-from info import db2
+from info import DB2
 
 class Database:
 
@@ -117,4 +117,4 @@ class Database:
         return banned_users
 
 
-db = Database(db2)
+db = Database(DB2)
