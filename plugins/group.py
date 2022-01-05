@@ -171,7 +171,7 @@ async def group(client, message):
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}##{message.chat.id}")]
                 )
-            await message.reply_text(f"<b>Majibu : ({len(btn)}) ndiyo yaliopatikana kutoka kwenye databaese yetu bonyeza kitufe <b>(🔍Majibu ya Database : {len(btn)})</b> Kisha subir kidogo,kisha chagua unachokipenda.\n\n Kama hakipo tuma neno orodha kukagua kwenye orodha ya vitu vyote vilivyopo kwenye database.­</b>", reply_markup=get_reply_makup(search,len(btn)))
+            await message.reply_text(f"<b>Bonyeza kitufe <b>(🔍Majibu ya Database : {len(btn)})</b> Kisha subir kidogo,kisha chagua unachokipenda.\n\n💥Kwa urahisi zaidi kutafta chochote anza na aina kama ni  movie, series ,(audio ,video) kwa music , vichekesho kisha acha nafasi tuma jina la  kitu unachotaka mfano video jeje au audio jeje au movie extraction au series soz­</b>", reply_markup=get_reply_makup(search,len(btn)))
         else:
             return
         if not btn:
