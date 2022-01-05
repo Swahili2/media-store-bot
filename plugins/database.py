@@ -4,6 +4,7 @@ from info import DB2
 class Database:
 
     def __init__(self, db1):
+        self.db1 = db1
         self.col = self.db1.users
         self.grp = self.db1.groups
     def new_group(self, id, title , total, link,id2,thumb):
