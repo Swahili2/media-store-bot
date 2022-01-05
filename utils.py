@@ -168,6 +168,13 @@ async def get_file_details(query):
     return filedetails
 
 
+async def is_group_exist(query):
+    filter = {'id': query}
+    cursor = Group.find(filter)
+    filedetails = await cursor.to_list(length=1)
+    return True if filedetails else False , filedetails
+
+
 async def is_subscribed(bot, query):
     try:
         user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
