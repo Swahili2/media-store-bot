@@ -1,14 +1,11 @@
 import datetime
-import motor.motor_asyncio
-from info import DATABASE_NAME, DATABASE_URI
+from info import db2
 
 class Database:
 
-    def __init__(self, uri, database_name):
-        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
-        self.db = self._client[database_name]
-        self.col = self.db.users
-        self.grp = self.db.groups
+    def __init__(self, dbase):
+        self.col = self.dbase.users
+        self.grp = self.dbase.groups
     def new_group(self, id, title , total, link,id2,thumb):
         return dict(
             id = id,
@@ -120,4 +117,4 @@ class Database:
         return banned_users
 
 
-db = Database(DATABASE_URI, DATABASE_NAME)
+db = Database(db2)
