@@ -120,7 +120,7 @@ async def add_poster(bot, message):
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}'
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
             media.file_type = file_type
-            media.caption = f'{reply.caption.html}\n🌟@Bandolako2bot \n💿[IMAGE URL]({media.file_ref})'
+            media.caption = f'{reply.caption.html}\n🌟@Bandolako2bot \n💿[IMAGE URL]({media.file_ref})\nkiurahisi anza na movie au series nacha nafasi kisha jina LA muv au series mfano series soz au movie extraction'
             break
         elif media is not None :
             media.file_ref = 'hellow'
@@ -130,7 +130,7 @@ async def add_poster(bot, message):
             mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
-            media.caption = f'{reply.caption}\n🌟@Bandolako2bot'
+            media.caption = f'{reply.caption}\n🌟@Bandolako2bot \nkiurahisi kutafta miziki anza na audio kwa audio au video kwa video nacha nafasi jina LA mziki  au msanii mfano audio jeje au video jeje au audio diamond '
             break
     else:
         return
