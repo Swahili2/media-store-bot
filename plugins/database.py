@@ -6,18 +6,6 @@ class Database:
     def __init__(self, db1):
         self.db1 = db1
         self.col = self.db1.users
-        self.grp = self.db1.groups
-    def new_group(self, id, title , total, link,id2,thumb):
-        return dict(
-            id = id,
-            user_id = id2,
-            title = title,
-            link_inv = link,
-            total_m = total,
-            thumb = thumb,
-            amount = 0,
-            phone_no = 0
-        )
 
     def new_user(self, id):
         return dict(
@@ -32,47 +20,20 @@ class Database:
                 ban_reason=''
             )
         )
-    async def get_group_filters(self, query):
-        if query == "":
-            documents = self.grp.find({})
-            count = await self.grp.count_documents({})
-            documents = await documents.to_list(length=count)
-            return documents
-        else:
-            regex = f"^{query}.*"
-            query = {'title': {'$regex' : regex}}
-            count = await self.grp.count_documents(query)
-            documents = self.grp.find(query)
-            documents = await documents.to_list(length = count)
-            return documents
 
     async def add_user(self, id):
         user = self.new_user(id)
         await self.col.insert_one(user)
 
-    async def add_group(self, id,title,total,link,id2 ,thumb_url):
-        group = self.new_group(id,title,total,link,id2,thumb_url)
-        await self.grp.insert_one(group)
-
     async def is_user_exist(self, id):
         user = await self.col.find_one({'id': int(id)})
         return True if user else False
 
-    async def is_group_exist(self, id):
-        title = 2
-        user = await self.grp.find_one({'id': id})
-        if not user:
-            return False,title
-        return (True if user else False),int(user["user_id"])
     async def update_grd_id(self,id,id2):
         await self.col.update_one({'id': id}, {'$set': {'group_id': id2}})
    
     async def total_users_count(self):
         count = await self.col.count_documents({})
-        return count
-
-    async def total_group_count(self):
-        count = await self.grp.count_documents({})
         return count
 
     async def get_all_users(self):
@@ -81,9 +42,6 @@ class Database:
     
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
-
-    async def delete_group(self, group_id):
-        await self.grp.delete_many({'id': int(group_id)})
 
     async def remove_ban(self, id):
         ban_status = dict(
