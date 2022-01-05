@@ -1,6 +1,6 @@
 
 import datetime
-from info import DATABASE_URI, DATABASE_NAME, CHANNELS
+from info import CHANNELS
 from plugins.database import db
 
 
