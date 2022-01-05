@@ -278,6 +278,8 @@ async def addconnection(client,message):
             link = ttl.invite_link
             total = ttl.members_count
             group_details= await is_group_exist(group_id)
+            for file in group_details:
+                user_id2=file.user_id
             if not group_details :
                 thumb = await upload_group(client,ttl.photo,message)
                 await save_group(group_id,userid,title,link,total,thumb,None,None)
@@ -293,8 +295,7 @@ async def addconnection(client,message):
                         parse_mode="md"
                     )
                     return
-            for file in group_details:
-                user_id2=file.user_id
+           
             elif user_id2 == userid :
                 
                 await message.reply_text(
