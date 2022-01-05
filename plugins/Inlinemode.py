@@ -110,14 +110,15 @@ async def answer(bot, query):
         offset = int(query.offset or 0)
         files ,next_offset= await get_group_filters(string,max_results=10,offset=offset)
         for file in files:
-             title = f"JOIN {file.title} 🙏🙏🙏"
-             text1= f"total members : {file.total_m}\nNapenda kutanguliza shukran zangu za dhat kwa kuweza kuniamini kuwa naweza kukupa muv au series, nyimbo n.k...\n\n Mimi ni  robot naweza kutumika kwenye magroup tu ambayo m nipo au ukatafta chochote ukiwa inline kwenye group lolote niwe nipo au sipo ila sehemu nyingine zaid ya magroup siwez kufanya kaz kwa maelezo zaidi jiunge na kikundi chetu cha msaada \n [bonyeza hapa kujiunga](https://t.me/+NlxxLyYIY1hiMWFk)"
+             ttl=await bot.get_users(file.user_id)
+             title = f"🎁🎁 {file.title} 🎁🎁"
+             text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}*"\n\n🙍🙍‍♀ Admin name:**{ttl.first_name}**\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kjiunga"
              result.append(InlineQueryResultArticle(
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                        description=f'total members : {file.total_m} \nGusa hapa kujoin group',
+                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
                         thumb_url=file["thumb"],
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 join group', url=file["link_inv"])]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file["link_inv"])]])
                     ))
         await query.answer(results=result,
                         is_personal = True,
