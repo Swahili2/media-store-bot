@@ -30,11 +30,11 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 # Messages
 default_start_msg = """
-**Hi,Mimi in robot niite swahili robot**
-Unaweza ukapata movie,series,miziki,vichekesho na huduma nyingine kibao\n
-Kupata vyote hivi ni add kwenye group au chagua kwenye group zetu kwa kubonyeza button ya grup zetu kisha chagua upendalo.\n
-Nb.m natumika tu kwenye group nje ya hapo siwez kufanya utaniona kama boshen tu
-Ofa zipo mbili kwa atakaye ni  add kwenye group ya kwanza ntaongeza grip lako kwenye list yng
+**Hi,Mimi ni robot niite swahili robot**
+Unaweza ukapata movie ,series ,miziki ,vichekesho na huduma nyingine kibao\n
+Kupata vyote hivi ni add kwenye group au chagua kwenye group zetu kwa kubonyeza button ya group zetu kisha chagua upendalo.\n
+Nb.mimi natumika kwenye magroup tu nje ya hapo siwez kufanya kazi utaniona kama boshen tu
+Ofa zipo mbili kwa atakaye ni  add kwenye group ya kwanza ntaongeza group lako kwenye list yangu
 Ya pili ni  baada ya kuniunga utaiona we mwenyewe hii ni  siri baina yangu na admin.\n
 **Karibun sana Swahili group**
 """
