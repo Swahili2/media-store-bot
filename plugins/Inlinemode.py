@@ -112,7 +112,7 @@ async def answer(bot, query):
         for file in files:
              ttl=await bot.get_users(file.user_id)
              title = f"🎁🎁 {file.title} 🎁🎁"
-             text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}*"\n\n🙍🙍‍♀ Admin name:**{ttl.first_name}**\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kjiunga"
+             text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}*"\n\n🙍🙍‍♀ Admin name:**{ttl.first_name}**\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
              result.append(InlineQueryResultArticle(
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
