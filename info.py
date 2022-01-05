@@ -25,7 +25,7 @@ AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "").split()]
 
 # MongoDB information
 client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-db2 = client['swahilihit']
+DB2 = client['swahilihit']
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 # Messages
