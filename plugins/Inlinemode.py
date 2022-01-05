@@ -108,7 +108,7 @@ async def answer(bot, query):
         result = []
         string = query.query.strip()
         offset = int(query.offset or 0)
-        files = await db.get_group_filters(string)
+        files ,next_offset= await get_group_filters(string,max_results=10,offset=offset))
         await bot.send_message(text=f'{files}',chat_id=query.from_user.id)
         for file in files:
              title = f"Samahani {query.from_user.first_name} 🙏🙏🙏"
@@ -123,6 +123,7 @@ async def answer(bot, query):
         await query.answer(results=result,
                         is_personal = True,
                         cache_time=cache_time,
+                        next_offset=str(next_offset)
                     )
 
 def get_reply_markup(query, file_id, nyva):
