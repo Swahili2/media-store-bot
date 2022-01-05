@@ -277,8 +277,8 @@ async def addconnection(client,message):
             title = ttl.title
             link = ttl.invite_link
             total = ttl.members_count
-            addcon,user_id2 = await is_group_exist(group_id)
-            if not addcon:
+            group_details= await is_group_exist(group_id)
+            if not group_details :
                 thumb = await upload_group(client,ttl.photo,message)
                 await save_group(group_id,userid,title,link,total,thumb,None,None)
                 await message.reply_text(
@@ -292,6 +292,9 @@ async def addconnection(client,message):
                         f"Asante kwa kutuamini umefanikiwa kuunganisha group \n **__{title}__** \n\nTutakupatia ofa  ya kila mteja kila  atakapo lipia kifurush kupitia grup lako \n\nUtapata tsh 1000 kwa kila mteja. kuona maendeleo ya group lako tuma neno `group' **tutakuwa tunakutumia ujumbe endapo mteja akilipa na Jinsi ya kupata mshiko wako**!",
                         parse_mode="md"
                     )
+                    return
+            for file in group_details:
+                user_id2=file.user_id
             elif user_id2 == userid :
                 
                 await message.reply_text(
