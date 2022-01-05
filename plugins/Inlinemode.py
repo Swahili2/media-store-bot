@@ -123,6 +123,7 @@ async def answer(bot, query):
         await query.answer(results=result,
                         is_personal = True,
                         cache_time=cache_time,
+                        switch_pm_text=f'Magrup Ambayo nimejiunga mpaka sasa',
                         next_offset=str(next_offset)
                     )
 
