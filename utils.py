@@ -172,7 +172,7 @@ async def is_group_exist(query):
     filter = {'id': query}
     cursor = Group.find(filter)
     filedetails = await cursor.to_list(length=1)
-    return True if filedetails else False , filedetails[0].user_id
+    return True if filedetails else False , filedetails if filedetails else 0
 
 
 async def is_subscribed(bot, query):
