@@ -79,8 +79,9 @@ async def answer(bot, query):
             title =f"Mpendwa {query.from_user.first_name}"
             results. append(InlineQueryResultArticle(
                     title=title,
-                    input_message_content=InputTextMessageContent(message_text = f"Mpendwa **{query. from_user.first_name}**\nKama movie yako haipo hakikisha kwenye orodha zetu kwa kutuma neno orodha au kwa uharaka zaidi tuma neno movie au series n.k ikifuatiwa na aa kwa muv au series n.k zinazoanziwa na a au bb zinazoanziwa na b ,Ukikosa kabisa tutumie hilo jina la muv au series au chochote kile kilichokesekana kwenye huduma zetu \n[BONYEZA HAPA KUTUMA](https://t.me/Swahili_msaadabot)", disable_web_page_preview = True),
+                    input_message_content=InputTextMessageContent(message_text = f"Mpendwa **{query. from_user.first_name}**\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe haipo chini kutuma", disable_web_page_preview = True),
                     description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi')
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
                 )
             try:
                 await query.answer(results=results,
