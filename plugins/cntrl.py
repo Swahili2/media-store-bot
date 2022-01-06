@@ -61,7 +61,7 @@ async def delete(bot, message):
             if mime==file.file_ref:
                 status =await  bot.ask(text = "send all to delete all files or send the video you want to delete on this movie/series ", chat_id = message.from_user.id)
                 filez = await get_filter_results(query=file.file_id)
-                if status.text == "all":
+                if status.text.lower() == "all":
                     for fihj in filez:
                         result = await Media.collection.delete_one({
                             'file_id': fihj.file_id
