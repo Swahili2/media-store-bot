@@ -77,11 +77,11 @@ async def answer(bot, query):
                             reply_markup=reply_markup))      
         if results:
             title =f"Mpendwa {query.from_user.first_name}"
-            results. append(InlineQueryResultArticle(
+            results.append(InlineQueryResultArticle(
                     title=title,
                     input_message_content=InputTextMessageContent(message_text = f"Mpendwa **{query. from_user.first_name}**\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe haipo chini kutuma", disable_web_page_preview = True),
                     description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi',
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]])))
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
                 )
             try:
                 await query.answer(results=results,
