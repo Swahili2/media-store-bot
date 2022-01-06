@@ -27,8 +27,6 @@ async def start(bot, cmd):
                     except Exception as e:
                         print(e)
                         f_caption=f_caption
-                if f_caption is None:
-                    f_caption = f"{files.file_name}"
             strg=files.file_name.split('.dd#.')[3]
             strgs = strg.split('.')[1]
             strg2 = strg.split('.')[0]
