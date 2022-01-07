@@ -1,6 +1,7 @@
 import os
 import logging
 from pyrogram import Client, filters
+from plugins.database import db
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 from utils import Media,Group,save_group, get_file_details, get_size, save_file, get_filter_results,upload_photo,upload_group,is_group_exist
@@ -214,7 +215,7 @@ async def ban(c,m):
         try:
             await c.send_message(
                 user_id,
-                f"Muamala wako tumeupokea sasa unaweza kupata huduma zetu za muv na sizon \n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n🗓🗓**siku___siku{ban_duration}(+ofa)**\n🎁🎁ofa ___ ** __{ban_reason}__** \nkujua salio liliobaki tuma neno salio\n\n"
+                f"Muamala wako tumeupokea sasa unaweza kupata huduma zetu za muv na sizon \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___siku{ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __{ban_reason}__** \n\nkujua salio liliobaki tuma neno salio\n\n"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
