@@ -339,4 +339,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if mkv.photo:
                 await client.send_message(chat_id = query.from_user.id,text='tumepokea muamala ngoja tuuhakiki tutakupa majibu tukimaliza')
             else:
-                await client.send_message(chat_id = query.from_user.id,text='tumepokea muamala ngoja tuuhakiki tutakupa majibu tukimaliza')
+                await client.send_message(chat_id = query.from_user.id,text='Rudia tena ')
