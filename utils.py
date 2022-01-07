@@ -108,7 +108,7 @@ async def get_search_results(query, file_type=None, max_results=10, offset=0):
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
-        raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
+        raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
 
@@ -147,7 +147,7 @@ async def get_filter_results(query):
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
-        raw_pattern = r'(\b|[\.\+\-_])' + query + r'(\b|[\.\+\-_])'
+        raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
     try:
