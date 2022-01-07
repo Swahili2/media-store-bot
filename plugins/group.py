@@ -326,8 +326,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         caption=f_caption
                     )
         elif query.data == "kenya":
-            mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id ,reply_markup=ForceReply())
+            await query.answer()
+            mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
         
         elif query.data == "tanzania":
-            mkv = await client.ask(text="** VIFURUSHI VYA SWAHILI GROUP** \n wiki 1(07 days) ➡️ 2000/= \n wiki 2(14 days) ➡️ 3000/= \n wiki 3(21 days) ➡️ 4000/= \n mwezi (30 days) ➡️ 5000/= \n\n Lipa kwenda **0624667219** halopesa:Ukishafanya malipo tuma screenshot ya muamala hapa kwenye hii bot .\n\n Ukimaliza subir kidogo ntakutaarifu endapo msimamiz wangu atamaliza kuhakiki muamala wako..\nPia kila muamala utakao lipia ofa zipo unaeza kuongezewa siku(1,2,3---)\n **__KARIBUN SANA SWAHILI GROUP__**", chat_id = query.from_user.id)
+            await query.answer()
+            await client.send_message(chat_id = query.from_user.id,text="** VIFURUSHI VYA SWAHILI GROUP** \n wiki 1(07 days) ➡️ 2000/= \n wiki 2(14 days) ➡️ 3000/= \n wiki 3(21 days) ➡️ 4000/= \n mwezi (30 days) ➡️ 5000/= \n\n Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Nmeshafanya malipo", callback_data="malipo")]]))
         
+        elif query.data == "malipo":
+            await query.answer()
+            mkv = await client.ask(text='Reply huu ujumbe kisha tuma screenshot ya malipo kisha subir kidogo wasimamiz wangu wahakiki muamala wako',chat_id = query.from_user.id,reply_markup=ForceReply())
+            if mkv.photo:
+                await client.send_message(chat_id = query.from_user.id,text='tumepokea muamala ngoja tuuhakiki tutakupa majibu tukimaliza')
+            else:
+                await client.send_message(chat_id = query.from_user.id,text='tumepokea muamala ngoja tuuhakiki tutakupa majibu tukimaliza')
