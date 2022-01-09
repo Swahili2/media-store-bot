@@ -77,7 +77,7 @@ async def answer(bot, query):
                             reply_markup=reply_markup))      
         if results:
             if next_offset == '' and string != '' :
-                title =f"Mpendwa [{query.from_user.first_name}](tg://user?id={query.from_user.id})"
+                title =f"Mpendwa {query.from_user.first_name}"
                 results.append(InlineQueryResultArticle(
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = f"Mpendwa [{query. from_user.first_name}](tg://user?id={query.from_user.id})\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe hapo chini kutuma kisha ukurasa unaofuata bonyeza start kisha ntumie jina LA muv au series au nyimbo unayotafta", disable_web_page_preview = True),
