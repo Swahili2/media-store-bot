@@ -76,7 +76,7 @@ async def answer(bot, query):
                             caption=f_caption,
                             reply_markup=reply_markup))      
         if results:
-            if next_offset == '':
+            if next_offset == '' and string != '' :
                 title =f"Mpendwa {query.from_user.first_name}"
                 results.append(InlineQueryResultArticle(
                         title=title,
