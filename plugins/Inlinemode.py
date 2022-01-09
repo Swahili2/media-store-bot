@@ -77,10 +77,10 @@ async def answer(bot, query):
                             reply_markup=reply_markup))      
         if results:
             if next_offset == '' and string != '' :
-                title =f"Mpendwa {query.from_user.first_name}"
+                title =f"Mpendwa [{query.from_user.first_name}](tg://user?id={query.from_user.id})"
                 results.append(InlineQueryResultArticle(
                         title=title,
-                        input_message_content=InputTextMessageContent(message_text = f"Mpendwa **{query. from_user.first_name}**\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe hapo chini kutuma kisha ukurasa unaofuata bonyeza start kisha ntumie jina LA muv au series au nyimbo unayotafta", disable_web_page_preview = True),
+                        input_message_content=InputTextMessageContent(message_text = f"Mpendwa [**{query. from_user.first_name}**](tg://user?id={query.from_user.id})\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe hapo chini kutuma kisha ukurasa unaofuata bonyeza start kisha ntumie jina LA muv au series au nyimbo unayotafta", disable_web_page_preview = True),
                         description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi',
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
                     )
@@ -114,7 +114,7 @@ async def answer(bot, query):
         for file in files:
              ttl=await bot.get_users(file.user_id)
              title = f"🎁🎁 {file.title} 🎁🎁"
-             text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:**{ttl.first_name}**\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
+             text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[**{ttl.first_name}**](tg://user?id={file.user_id})\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
              result.append(InlineQueryResultArticle(
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
