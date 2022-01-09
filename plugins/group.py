@@ -18,7 +18,7 @@ async def start(bot, cmd):
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                title = files.file_name
+                title = files.file_name.split('.dd#.')[1]
                 size=get_size(files.file_size)
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
@@ -35,7 +35,7 @@ async def start(bot, cmd):
                 ban_status = await db.get_ban_status(cmd.from_user.id)
                 if strgs.lower() == 'f' or ban_status["is_banned"]:
                     if strg2.lower() == 'm':
-                        f_caption=f'🎬title \n🌟 @Bandolako2bot \n\n ***bonyeza download kuzidownload hapa telegram au google kudownload kupitia google drive***\n *usisahau mda wowote kuweka email kwa kutuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
+                        f_caption=f'🎬{title} \n🌟 @Bandolako2bot \n\n ***bonyeza download kuzidownload hapa telegram au google kudownload kupitia google drive***\n *usisahau mda wowote kuweka email kwa kutuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
                         buttns = [
                                 [
                                     InlineKeyboardButton("📤 DOWNLOAD",callback_data=f"subinps.dd#.{files.file_id}")
@@ -53,7 +53,7 @@ async def start(bot, cmd):
                         )
                     elif strg2.lower() == 's':
                         filef=await get_filter_results(file_id)
-                        f_caption =f'🎬title \n🌟 @Bandolako2bot \n\n ***Bonyeza google link kudownload kupitia google drive na bonyeza season episode range(s01()1-n) kudownload episode husika hapa telegram tunaanza na latest episodes kurud mpaka ya mwanzo*** \n\n *kama hujaunga email tuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
+                        f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Bonyeza google link kudownload kupitia google drive na bonyeza season episode range(s01()1-n) kudownload episode husika hapa telegram tunaanza na latest episodes kurud mpaka ya mwanzo*** \n\n *kama hujaunga email tuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
                         output = []
                         output.append(InlineKeyboardButton("🔗 GOOGLE LINK",url= link))
                         for x in filef:
@@ -312,7 +312,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 for files in filedetails:
                     title = files.file_name
                     size=get_size(files.file_size)
-                    f_caption=f"{files.caption}\n🌟 @bandolako2bot" if files.caption else "🌟 @bandolako2bot"
+                    f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
                     if CUSTOM_FILE_CAPTION:
                         try:
                             f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
