@@ -121,7 +121,7 @@ async def start(bot, cmd):
                     )
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-    else:
+    elif cmd.chat.type == 'private':
         await cmd.reply_text(
             START_MSG,
             parse_mode="Markdown",
