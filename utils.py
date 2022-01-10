@@ -106,8 +106,8 @@ async def get_search_results(query, file_type=None, max_results=10, offset=0):
 
     query = query.strip()
     if not query:
-        raw_pattern = '.'
-    elif ' ' not in query:
+        query = 'dd# x'
+    if ' ' not in query:
         raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
@@ -192,8 +192,8 @@ async def get_group_filters(query , max_results=10, offset=0):
 
     query = query.strip()
     if not query:
-        query= 'dd# x'
-    if ' ' not in query:
+        raw_pattern = '.'
+    elif ' ' not in query:
         raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
