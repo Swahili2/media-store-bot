@@ -107,6 +107,9 @@ async def get_search_results(query, file_type=None, max_results=10, offset=0):
     query = query.strip()
     if not query:
         query = 'dd# x'
+    query = query.lower()
+    if query=='movie':
+        query='movie x'
     if ' ' not in query:
         raw_pattern = r'\b' + query + r'.*'
     else:
