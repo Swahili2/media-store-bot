@@ -127,10 +127,10 @@ async def add_poster(bot, message):
             break
         elif media is not None :
             media.file_ref = 'hellow'
-            testi=await bot.ask(text = " send filename of the document", chat_id = message.from_user.id)
+            testi=await bot.ask(text = " ntumie jina la video,audio,document uliotuma", chat_id = message.from_user.id)
             media.file_name = testi.text
             resv = ".dd#.x"
-            mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
+            mk=await bot.ask(text = " ntumie maelezo kidogo kuhusu ulichotuma", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
             media.caption = f'{reply.caption}\n🌟 @Bandolako2bot' if reply.caption else "🌟@Bandolako2bot"
@@ -147,26 +147,22 @@ async def add_data(bot, message):
     pres = 'absent'
     if reply and reply.photo:
         msg = await reply.reply("Processing...⏳", quote=True)
-        namee= await bot.ask(text = " send file name of the photo", chat_id = message.from_user.id)
-        namee=namee.text
-        files = await get_filter_results(query=namee)
-        if files:
-            mime = await bot.ask(text = " send photo link/URL for verifying", chat_id = message.from_user.id)
-            for file in files: 
-                title = file.file_ref
-                if title==mime.text:
-                    pres = 'present'
-                    break  
-        else:
-            await msg.edit('file not found in database please try another file')
+        mime = await bot.ask(text = " ntumie link kwenye poster yako yenye neno IMG url kwa ajili ya kuthibitisha", chat_id = message.from_user.id)
+        namee = mime.text
+        file = await get_mime_results(query=namee)
+        if not file:
+            await msg.edit('Tafadhali umetuma ujumbe ambao  s sahihi au poster hii haipo kwenye database yng')
             return
         statusi = file.file_name.split('.dd#.')[2] 
         dcm_id = file.file_id     
         if statusi == 'x' and pres == 'present':
             dta = 'stat'
             dtb = 'stop'
-            mkv = await bot.ask(text = " send batch name season start with last ep separate by hash e.g 10#S01EP(1-10) or else m#movie", chat_id = message.from_user.id)
-            mkv1,mkv2 = mkv.text.split('#')
+            mkv = await bot.ask(text = " ntumie batch name ya season kwa kuanza jina la  episode ya mwisho kisha ep kisha unganisha kwa jina LA batch mfano 10#S01EP(1-10) au tuma m#movie kama ni movie", chat_id = message.from_user.id)
+            try:
+                mkv1,mkv2 = mkv.text.split('#')
+            except:
+                 
             while dta!='stop':
                 mk=await bot.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
                 if mk.media:
@@ -189,10 +185,10 @@ async def add_data(bot, message):
                     await mk.reply(f'all file sent to database with id  {dcm_id}')
                     break
         else:
-            await msg.reply("file not accessible in database", quote=True)
+            await msg.reply("itakuwa file halipo kwenye database", quote=True)
             return
     else:
-        await message.reply('Reply to file or video or audio with /adddata command to message you want to add to database', quote=True)
+        await message.reply('Reply poster kwa command /adddata command ili nipate kupata taarifa za muv au season husika', quote=True)
         return
 @Client.on_message(filters.private & filters.command("add_user") & filters.user(ADMINS))
 async def ban(c,m):
