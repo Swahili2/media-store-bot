@@ -119,11 +119,34 @@ async def add_poster(bot, message):
             resv = ".dd#.x"
             mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
             access = await bot.ask(text = " send access and type eg m.t that is movie and access true or s.t series true", chat_id = message.from_user.id)
-            link = await bot.ask(text = " send link", chat_id = message.from_user.id)
-            media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}'
+            
+            media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
             media.file_type = file_type
             media.caption = f'{reply.caption.html}\n🌟 @Bandolako2bot \n💿 [IMAGE URL]({media.file_ref})'
+            replly,dta_id = await save_file(media)
+            dta='start'
+            while dta!='stop' and access.text.lower == 'm.t':
+                mk=await bot.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                if mk.media:
+                    for file_type in ("document", "video", "audio"):
+                        media = getattr(mk, file_type, None)
+                        if media is not None:
+                            media.file_type = file_type
+                            media.caption = mk.caption
+                            break
+                    resv = f'{dta_id}'
+                    media.file_ref = 'hellow'
+                    mkg = 'data.dd#.'
+                    media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
+                    media.file_name = f'{mkg}bnd2bot.dd#.H{mkv1}@.{resv}.d#.{mkv2}'
+                    a,b = await save_file(media)
+                    await mkv.reply(f'{mkg}\n caption {media.caption}\n type {media.file_type} \n {a} to database')
+
+                elif mk.text.lower()=='stop':
+                    dta = 'stop'
+                    await mk.reply(f'all file sent to database with id  {dcm_id}')
+                    break
             break
         elif media is not None :
             media.file_ref = 'hellow'
@@ -134,62 +157,12 @@ async def add_poster(bot, message):
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
             media.caption = f'{reply.caption}\n🌟 @Bandolako2bot' if reply.caption else "🌟@Bandolako2bot"
+            replly,dta_id = await save_file(media)
             break
     else:
         return
-    replly,dta_id = await save_file(media)
     await mk.reply(f'{mk.text}\n caption {media.caption}\n type {media.file_type} \n {replly} with id {dta_id}')
-   
-@Client.on_message(filters.command('adddata') & filters.user(ADMINS))
-async def add_data(bot, message):
-    """Media Handler"""
-    reply = message.reply_to_message
-    pres = 'absent'
-    if reply and reply.photo:
-        msg = await reply.reply("Processing...⏳", quote=True)
-        mime = await bot.ask(text = " ntumie link kwenye poster yako yenye neno IMG url kwa ajili ya kuthibitisha", chat_id = message.from_user.id)
-        namee = mime.text
-        file = await get_mime_results(query=namee)
-        if not file:
-            await msg.edit('Tafadhali umetuma ujumbe ambao  s sahihi au poster hii haipo kwenye database yng')
-            return
-        statusi = file.file_name.split('.dd#.')[2] 
-        dcm_id = file.file_id     
-        if statusi == 'x' and pres == 'present':
-            dta = 'stat'
-            dtb = 'stop'
-            mkv = await bot.ask(text = " ntumie batch name ya season kwa kuanza jina la  episode ya mwisho kisha ep kisha unganisha kwa jina LA batch mfano 10#S01EP(1-10) au tuma m#movie kama ni movie", chat_id = message.from_user.id)
-            try:
-                mkv1,mkv2 = mkv.text.split('#')
-            except:
-                 
-            while dta!='stop':
-                mk=await bot.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
-                if mk.media:
-                    for file_type in ("document", "video", "audio"):
-                        media = getattr(mk, file_type, None)
-                        if media is not None:
-                            media.file_type = file_type
-                            media.caption = mk.caption
-                            break
-                    resv = f'{dcm_id}'
-                    media.file_ref = 'hellow'
-                    mkg = 'data.dd#.'
-                    media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
-                    media.file_name = f'{mkg}bnd2bot.dd#.H{mkv1}@.{resv}.d#.{mkv2}'
-                    a,b = await save_file(media)
-                    await mkv.reply(f'{mkg}\n caption {media.caption}\n type {media.file_type} \n {a} to database')
-
-                elif mk.text.lower()==dtb:
-                    dta = 'stop'
-                    await mk.reply(f'all file sent to database with id  {dcm_id}')
-                    break
-        else:
-            await msg.reply("itakuwa file halipo kwenye database", quote=True)
-            return
-    else:
-        await message.reply('Reply poster kwa command /adddata command ili nipate kupata taarifa za muv au season husika', quote=True)
-        return
+               
 @Client.on_message(filters.private & filters.command("add_user") & filters.user(ADMINS))
 async def ban(c,m):
     if len(m.command) == 1:
