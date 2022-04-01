@@ -21,88 +21,33 @@ async def start(bot, cmd):
                 title = files.file_name.split('.dd#.')[1]
                 size=get_size(files.file_size)
                 f_caption=files.caption
-                if CUSTOM_FILE_CAPTION:
-                    try:
-                        f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
-                    except Exception as e:
-                        print(e)
-                        f_caption=f_caption
             strg=files.file_name.split('.dd#.')[3]
-            strgs = strg.split('.')[1]
-            strg2 = strg.split('.')[0]
-            link = files.file_name.split('.dd#.')[4]
             if filedetails:
                 ban_status = await db.get_ban_status(cmd.from_user.id)
-                if strgs.lower() == 'f' or ban_status["is_banned"]:
-                    if strg2.lower() == 'm':
-                        f_caption=f'🎬{title} \n🌟 @Bandolako2bot \n\n ***bonyeza download kuzidownload hapa telegram au google kudownload kupitia google drive***\n *usisahau mda wowote kuweka email kwa kutuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
-                        buttns = [
-                                [
-                                    InlineKeyboardButton("📤 DOWNLOAD",callback_data=f"subinps.dd#.{files.file_id}")
-                          
-                                ],
-                                [
-                                    InlineKeyboardButton("🔗 GOOGLE LINK",url= link)
-                                ]
-                            ]
-                        await bot.send_photo(
-                            chat_id=cmd.from_user.id,
-                            photo=files.mime_type,
-                            caption=f_caption,
-                            reply_markup=InlineKeyboardMarkup(buttns)
-                        )
-                    elif strg2.lower() == 's':
+                if ban_status["is_banned"]:
+                    if strg.lower() == 'm':
+                        filez=await get_filter_results(file_id)
+                        for file in reversed(filez):
+                            filedetails = await get_file_details(file.file_id)
+                            for files in filedetails:
+                                title = files.file_name
+                                size=get_size(files.file_size)
+                                f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
+                                await bot.send_cached_media(
+                                    chat_id=query.from_user.id,
+                                    file_id=file.file_id,
+                                    caption=f_caption
+                                )
+                        return
+                    elif strg.lower() == 's':
+                        link = files.file_name.split('.dd#.')[4]
                         filef=await get_filter_results(file_id)
-                        f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Bonyeza google link kudownload kupitia google drive na bonyeza season episode range(s01()1-n) kudownload episode husika hapa telegram tunaanza na latest episodes kurud mpaka ya mwanzo*** \n\n *kama hujaunga email tuma neno wekaemail kisha email yako mfano wekaemail hramamohamed@gmail.com*'
-                        output = []
-                        output.append(InlineKeyboardButton("🔗 GOOGLE LINK",url= link))
-                        for x in filef:
-                            i= x.file_name.split('.dd#.')[2]
-                            a,b= i.split('.d#.')
-                            l1,l2= a.split('@.')
-                            dataa=InlineKeyboardButton(f"{b}",callback_data=f"subinps.dd#.{l1} {l2}" )
-                            if dataa not in output:
-                                output.append(dataa)
-                        buttons=list(split_list(output,2))
-                        if len(buttons) > 10: 
-                            btns = list(split_list(buttons, 10)) 
-                            keyword = f"{message.chat.id}-{message.message_id}"
-                            BUTTONS[keyword] = {
-                               "total" : len(btns),
-                               "buttons" : btns
-                            }
-                        else:
-                            buttons = buttons
-                            buttons.append(
-                                [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
-                            )
-                            if BUTTON:
-                                buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-                            await bot.send_photo(
-                                chat_id=cmd.from_user.id,
-                                photo=files.mime_type,
-                                caption=f_caption,
-                                reply_markup=InlineKeyboardMarkup(buttons)
-                            )
-                            return
-
-                        data = BUTTONS[keyword]
-                        buttons = data['buttons'][0].copy()
-
-                        buttons.append(
-                            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
-                        )    
-                        buttons.append(
-                            [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
-                        )
-                        if BUTTON:
-                            buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-     
+                        f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Series zetu zote zipo google drive,Kama huwezi kufungua link tutumie email yako @hrm45 inbox tukuunge***'
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
                             photo=files.mime_type,
                             caption=f_caption,
-                            reply_markup=InlineKeyboardMarkup(buttons)
+                            reply_markup=InlineKeyboardMarkup(InlineKeyboardButton("🔗 GOOGLE LINK",url= link))
                         )
                         return
                      
@@ -119,6 +64,7 @@ async def start(bot, cmd):
                             ]
                         )
                     )
+                    return
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif cmd.chat.type == 'private':
@@ -181,25 +127,7 @@ def get_reply_makup(query,totol):
         ]
         ]
     return InlineKeyboardMarkup(buttons)
-    
-   
-def get_size(size):
-    """Get size in readable format"""
-
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units):
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
-
-def split_list(l, n):
-    for i in range(0, len(l), n):
-        yield l[i:i + n]          
-
-
-
+              
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
     clicked = query.from_user.id
@@ -209,94 +137,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         typed = query.from_user.id
         pass
     if (clicked == typed):
-
-        if query.data.startswith("next"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == int(data["total"]) - 2:
-                buttons = data['buttons'][int(index)+1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-            else:
-                buttons = data['buttons'][int(index)+1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)+2}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-
-
-        elif query.data.startswith("back"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == 1:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return   
-            else:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [InlineKeyboardButton("⏪ BACK", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
-                )
-                buttons.append(
-                    [InlineKeyboardButton(f"📃 Pages {int(index)}/{data['total']}", callback_data="pages")]
-                )
-                if BUTTON:
-                    buttons.append([InlineKeyboardButton(text="Close ❌",callback_data="close")])
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-        elif query.data == "about":
-            await query.answer('Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama kuna makosa tujulishe tuboreshe',show_alert=True)
+        if query.data == "about":
+            await query.answer('Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama kuna makosa tujulishe tuboreshe huduma zetu',show_alert=True)
             
-        elif query.data == "pages":
-            await query.answer()
         elif query.data == "close":
             try:
                 await query.message.reply_to_message.delete()
@@ -304,27 +147,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except:
                 await query.message.delete()
                 
-        elif query.data.startswith("subinps"):
-            ident, file_id = query.data.split(".dd#.")
-            filez=await get_filter_results(file_id)
-            for file in reversed(filez):
-                filedetails = await get_file_details(file.file_id)
-                for files in filedetails:
-                    title = files.file_name
-                    size=get_size(files.file_size)
-                    f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
-                    if CUSTOM_FILE_CAPTION:
-                        try:
-                            f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
-                        except Exception as e:
-                            print(e)
-                            f_caption=f_caption
-                    await query.answer()
-                    await client.send_cached_media(
-                        chat_id=query.from_user.id,
-                        file_id=file.file_id,
-                        caption=f_caption
-                    )
         elif query.data == "kenya":
             await query.answer()
             mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
