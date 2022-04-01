@@ -118,17 +118,23 @@ async def add_poster(bot, message):
             media.file_name = testi.text
             resv = ".dd#.x"
             mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
-            access = await bot.ask(text = " send access and type eg m.t that is movie and access true or s.t series true", chat_id = message.from_user.id)
-            
-            media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
+            access = await bot.ask(text = " Tafadhali tuma m kama n movie au s kama ni series", chat_id = message.from_user.id)
+            if access.text.lower() !=['s','m']:
+                await mk.reply('Tafadhali anza upya')
+                return
+            if access.text.lower() == 's':
+                link=await bot.ask(text = " Tafadhali ntumie link ya series husika ", chat_id = message.from_user.id)
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link. text}'
+            elif access.text.lower() == 'm':
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
             media.file_type = file_type
             media.caption = f'{reply.caption.html}\n🌟 @Bandolako2bot \n💿 [IMAGE URL]({media.file_ref})'
             replly,dta_id = await save_file(media)
             dta='start'
-            while dta!='stop' and access.text.lower == 'm.t':
+            while dta!='stop' and access.text.lower() == 'm':
                 mk=await bot.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
-                if mk.media:
+                if mk.media and not (mk.photo):
                     for file_type in ("document", "video", "audio"):
                         media = getattr(mk, file_type, None)
                         if media is not None:
@@ -147,6 +153,8 @@ async def add_poster(bot, message):
                     dta = 'stop'
                     await mk.reply(f'all file sent to database with id  {dcm_id}')
                     break
+                else:
+                    await mk.reply('tafadhali tuma ulichoambiwa')
             break
         elif media is not None :
             media.file_ref = 'hellow'
