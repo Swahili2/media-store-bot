@@ -19,7 +19,6 @@ async def start(bot, cmd):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 title = files.file_name.split('.dd#.')[1]
-                size=get_size(files.file_size)
                 f_caption=files.caption
             strg=files.file_name.split('.dd#.')[3]
             if filedetails:
@@ -31,7 +30,6 @@ async def start(bot, cmd):
                             filedetails = await get_file_details(file.file_id)
                             for files in filedetails:
                                 title = files.file_name
-                                size=get_size(files.file_size)
                                 f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
                                 await bot.send_cached_media(
                                     chat_id=query.from_user.id,
