@@ -121,7 +121,7 @@ async def add_poster(bot, message):
             access = await bot.ask(text = " Tafadhali tuma m kama n movie au s kama ni series", chat_id = message.from_user.id)
             if access.text.lower() == 's':
                 link=await bot.ask(text = " Tafadhali ntumie link ya series husika ", chat_id = message.from_user.id)
-                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}.t'
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}'
             elif access.text.lower() == 'm':
                 media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
             else:
