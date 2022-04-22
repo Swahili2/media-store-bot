@@ -62,8 +62,8 @@ async def start(bot, cmd):
                         )
                     )
                     return
-        #except Exception as err:
-            #await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
+        except Exception as err:
+            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif cmd.chat.type == 'private':
         await cmd.reply_text(
             START_MSG,
