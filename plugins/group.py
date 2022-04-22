@@ -108,14 +108,9 @@ async def group(client, message):
             for file in files:
                 title = file.file_name.split('.dd#.')[1]
                 file_id = file.file_id
-                filename = f"[{get_size(file.file_size)}] {title}"
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}##{message.chat.id}")]
-                )
+                btn.append('a')
             await message.reply_text(f"<b>Bonyeza kitufe <b>(🔍Majibu ya Database : {len(btn)})</b> Kisha subir kidogo,kisha chagua unachokipenda.\n\n💥Kwa urahisi zaidi kutafta chochote anza na aina kama ni  movie, series ,(audio ,video) kwa music , vichekesho kisha acha nafasi tuma jina la  kitu unachotaka mfano video jeje au audio jeje au movie extraction au series soz­</b>", reply_markup=get_reply_makup(search,len(btn)))
         else:
-            return
-        if not btn:
             return
 def get_reply_makup(query,totol):
     buttons = [
