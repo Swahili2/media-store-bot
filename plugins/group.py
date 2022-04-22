@@ -32,14 +32,14 @@ async def start(bot, cmd):
                                 title = files.file_name
                                 f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
                                 await bot.send_cached_media(
-                                    chat_id=query.from_user.id,
+                                    chat_id=cmd.from_user.id,
                                     file_id=file.file_id,
                                     caption=f_caption
                                 )
                         return
                     elif strg.lower() == 's':
                         link = files.file_name.split('.dd#.')[4]
-                        filef=await get_filter_results(file_id)
+                        filef=await get_filter_results(title)
                         f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Series zetu zote zipo google drive,Kama huwezi kufungua link tutumie email yako @hrm45 inbox tukuunge***'
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
