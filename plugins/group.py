@@ -39,11 +39,10 @@ async def start(bot, cmd):
                         return
                     elif strg.lower() == 's':
                         link = files.file_name.split('.dd#.')[4]
-                        filef=await get_filter_results(title)
                         f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Series zetu zote zipo google drive,Kama huwezi kufungua link tutumie email yako @hrm45 inbox tukuunge***'
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
-                            photo=files.file_ref,
+                            photo=files.mime_type,
                             caption=f_caption,
                             reply_markup=InlineKeyboardMarkup(InlineKeyboardButton("🔗 GOOGLE LINK",url= link))
                         )
