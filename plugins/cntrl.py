@@ -123,7 +123,7 @@ async def add_poster(bot, message):
                 link=await bot.ask(text = " Tafadhali ntumie link ya series husika ", chat_id = message.from_user.id)
                 media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}.t'
             elif access.text.lower() == 'm':
-                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}.t'
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
             else:
                 await bot.send_message(message.from_user.id,'tafadhali umetuma neno s sahihi anza upya')
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
