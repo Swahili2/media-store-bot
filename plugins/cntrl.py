@@ -146,7 +146,7 @@ async def add_poster(bot, message):
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
                     a,b = await save_file(media)
-                    await mkv.reply(f'{media.file_name}\n caption {media.caption}\n type {media.file_type} \n {a} to database')
+                    await mk.reply(f'{media.file_name}\n caption {media.caption}\n type {media.file_type} \n {a} to database')
 
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
