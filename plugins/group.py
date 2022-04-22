@@ -20,7 +20,7 @@ async def start(bot, cmd):
             for files in filedetails:
                 title = files.file_name.split('.dd#.')[1]
                 f_caption=files.caption
-            strg=files.file_name.split('.dd#.')[3]
+            strg=files.file_name.split('.dd#.')[3].split('.')[0]
             if filedetails:
                 ban_status = await db.get_ban_status(cmd.from_user.id)
                 if ban_status["is_banned"]:
