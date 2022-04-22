@@ -33,7 +33,7 @@ async def start(bot, cmd):
                                 f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
                                 await bot.send_cached_media(
                                     chat_id=cmd.from_user.id,
-                                    file_id=file.file_id,
+                                    file_id=files.file_id,
                                     caption=f_caption
                                 )
                         return
@@ -43,7 +43,7 @@ async def start(bot, cmd):
                         f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n ***Series zetu zote zipo google drive,Kama huwezi kufungua link tutumie email yako @hrm45 inbox tukuunge***'
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
-                            photo=files.mime_type,
+                            photo=files.file_ref,
                             caption=f_caption,
                             reply_markup=InlineKeyboardMarkup(InlineKeyboardButton("🔗 GOOGLE LINK",url= link))
                         )
