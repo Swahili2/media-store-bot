@@ -133,7 +133,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('Mimi ni coder naitwa hrm45 nmesoma mtandaoni kwa kujifunza doc tofauti tofauti kama kuna makosa tujulishe tuboreshe huduma zetu',show_alert=True)
 
         elif query.data == "addemail":
-            await query.answer('Kuweka email tuma ujumbe ukianza na neno\n /wekaemail kisha email yako\nMfano\n/wekaemail hramamohamed@gmail.com')
+            await query.answer('Kuweka email tuma ujumbe ukianza na neno\n /wekaemail kisha email yako\nMfano\n/wekaemail hramamohamed@gmail.com',show_alert=True)
         elif query.data == "close":
             try:
                 await query.message.reply_to_message.delete()
