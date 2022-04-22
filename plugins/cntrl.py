@@ -150,7 +150,7 @@ async def add_poster(bot, message):
 
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
-                    await mk.reply(f'all file sent to database with id  {dcm_id}')
+                    await mk.reply(f'all file sent to database with id  {dta_id}')
                     break
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
