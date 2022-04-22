@@ -119,14 +119,13 @@ async def add_poster(bot, message):
             resv = ".dd#.x"
             mk=await bot.ask(text = " send artist or DJ or else send haijatafsiriwa", chat_id = message.from_user.id)
             access = await bot.ask(text = " Tafadhali tuma m kama n movie au s kama ni series", chat_id = message.from_user.id)
-            if access.text.lower() !=['s','m']:
-                await mk.reply('Tafadhali anza upya')
-                return
             if access.text.lower() == 's':
                 link=await bot.ask(text = " Tafadhali ntumie link ya series husika ", chat_id = message.from_user.id)
-                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link. text}'
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}.t'
             elif access.text.lower() == 'm':
-                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}'
+                media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}.dd#.{access.text}.dd#.{link.text}.t'
+            else:
+                await bot.send_message(message.from_user.id,'tafadhali umetuma neno s sahihi anza upya')
             media.file_id , media.mime_type ,media.file_ref = await upload_photo(bot,reply)
             media.file_type = file_type
             media.caption = f'{reply.caption.html}\n🌟 @Bandolako2bot \n💿 [IMAGE URL]({media.file_ref})'
