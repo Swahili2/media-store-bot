@@ -44,7 +44,7 @@ async def start(bot, cmd):
                             chat_id=cmd.from_user.id,
                             photo=files.mime_type,
                             caption=f_caption,
-                            reply_markup=InlineKeyboardMarkup([InlineKeyboardButton("🔗 GOOGLE LINK",url= link)])
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
                         )
                         return
                      
