@@ -12,6 +12,7 @@ class Database:
             id=id,
             join_date=datetime.date.today().isoformat(),
             group_id = 0,
+            ban_time =0,
             email_id = 'hramamohamed@gmail.com',
             ban_status=dict(
                 is_banned=False,
@@ -31,6 +32,9 @@ class Database:
 
     async def update_grd_id(self,id,id2):
         await self.col.update_one({'id': id}, {'$set': {'group_id': id2}})
+
+    async def update_ban(self,id,id2):
+        await self.col.update_one({'id': id}, {'$set': {'ban_time': id2}})
    
     async def total_users_count(self):
         count = await self.col.count_documents({})
