@@ -1,4 +1,4 @@
-import datetime
+import datetime,timedelta
 from info import DB2
 
 class Database:
@@ -12,7 +12,7 @@ class Database:
             id=id,
             join_date=datetime.now(),
             group_id = 0,
-            ban_time =0,
+            ban_time =date time.now(),
             email_id = 'hramamohamed@gmail.com',
             ban_status=dict(
                 is_banned=False,
