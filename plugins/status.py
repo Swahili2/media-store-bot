@@ -18,9 +18,11 @@ async def handle_user_status(bot, cmd):
             return
         if ban_status["is_banned"]:
             if (
-                    datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
-            ).days > ban_status["ban_duration"]:
+                    datetime.now() > ban_status["banned_on"]
+            ):
                 await db.remove_ban(chat_id)
+            else:
+                await db.update_ban(id,(ban_status["banned_on"]-datetime.now()))
         if await is_group_exist(cmd.chat.id):
             await db.update_grd_id(chat_id,cmd.chat.id)
         else:
