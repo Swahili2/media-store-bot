@@ -10,14 +10,14 @@ class Database:
     def new_user(self, id):
         return dict(
             id=id,
-            join_date=datetime.date.today().isoformat(),
+            join_date=datetime.now(),
             group_id = 0,
             ban_time =0,
             email_id = 'hramamohamed@gmail.com',
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
-                banned_on=datetime.date.max.isoformat(),
+                banned_on=datetime.now(),
                 ban_reason=''
             )
         )
@@ -51,7 +51,7 @@ class Database:
         ban_status = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.now(),
             ban_reason=''
         )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
@@ -60,7 +60,7 @@ class Database:
         ban_status = dict(
             is_banned=True,
             ban_duration=ban_duration,
-            banned_on=datetime.date.today().isoformat(),
+            banned_on=datetime.now() + timedelta(days=ban_duration),
             ban_reason=ban_reason
         )
         await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
@@ -69,7 +69,7 @@ class Database:
         default = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.now(),
             ban_reason=''
         )
         user = await self.col.find_one({'id': int(id)})
