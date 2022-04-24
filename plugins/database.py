@@ -12,7 +12,7 @@ class Database:
             id=id,
             join_date=datetime.now(),
             group_id = 0,
-            ban_time =datetime.now(),
+            ban_time =datetime.now()-date time.now(),
             email_id = 'hramamohamed@gmail.com',
             ban_status=dict(
                 is_banned=False,
