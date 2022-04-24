@@ -1,4 +1,4 @@
-import datetime,timedelta
+from datetime import datetime,timedelta
 from info import DB2
 
 class Database:
