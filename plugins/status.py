@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime
 from info import CHANNELS
 from plugins.database import db
 from utils import is_group_exist
