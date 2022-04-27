@@ -20,6 +20,7 @@ async def handle_user_status(bot, cmd):
                     datetime.now() > ban_status["banned_on"]
             ):
                 await db.remove_ban(chat_id)
+                await db.update_ban(id,'Siku 0,00:00:00')
             else:
                 await db.update_ban(id,f'Siku {(ban_status["banned_on"]-datetime.now()).days},{(ban_status["banned_on"]-datetime.now()).hours}:{(ban_status["banned_on"]-datetime.now()).minutes}:{(ban_status["banned_on"]-datetime.now()).seconds}')
         if await is_group_exist(cmd.chat.id):
