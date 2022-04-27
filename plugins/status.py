@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from info import CHANNELS
 from plugins.database import db
@@ -22,7 +21,7 @@ async def handle_user_status(bot, cmd):
             ):
                 await db.remove_ban(chat_id)
             else:
-                await db.update_ban(id,(ban_status["banned_on"]-datetime.now()))
+                await db.update_ban(id,f'Siku {(ban_status["banned_on"]-datetime.now()).days},{(ban_status["banned_on"]-datetime.now()).hours}:{(ban_status["banned_on"]-datetime.now()).minutes}:{(ban_status["banned_on"]-datetime.now()).seconds})
         if await is_group_exist(cmd.chat.id):
             await db.update_grd_id(chat_id,cmd.chat.id)
         else:
