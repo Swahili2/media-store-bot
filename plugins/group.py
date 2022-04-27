@@ -13,7 +13,8 @@ BOT = {}
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
-        await handle_user_status(bot,cmd)   
+        await handle_user_status(bot,cmd)
+        ban_status = await db.get_ban_status(cmd.from_user.id)  
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
@@ -22,7 +23,6 @@ async def start(bot, cmd):
                 f_caption=files.caption
             strg=files.file_name.split('.dd#.')[3].split('.')[0]
             if filedetails:
-                ban_status = await db.get_ban_status(cmd.from_user.id)
                 if ban_status["is_banned"]:
                     if strg.lower() == 'm':
                         filez=await get_filter_results(file_id)
@@ -65,8 +65,14 @@ async def start(bot, cmd):
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif cmd.chat.type == 'private':
+        await handle_user_status(bot,cmd)
+        ban_status = await db.get_ban_status(cmd.from_user.id)
+        if ban_status["is_banned"]:
+            a=ban_status["ban_duration"]
+            if a > 29 :
+                aina=kifurush cha mwezi
         await cmd.reply_text(
-            START_MSG,
+            f'{START_MSG}\nVIFURUSHI ULIVYOJIUNGA\n**(ili kupata huduma zetu)**\nAina ya kifurushi\n\n{aina}\n\nTarehe ya kifurush kuisha \n\n{trh}\n\nMda uliobaki kifurush kuisha\n\n{mda}\n\n**kujua vifurush vyetu tuma neno list**',
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -85,14 +91,10 @@ async def start(bot, cmd):
 Client.on_message(filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     await handle_user_status(client,message)
-    if message.text.startswith("/"):
-        return
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-        return
+    return
    
 @Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
-    await handle_user_status(client,message)
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
     if 2 < len(message.text) < 50:    
