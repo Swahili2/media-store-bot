@@ -72,6 +72,7 @@ async def start(bot, cmd):
         if ban_status["is_banned"]:
             a=ban_status["ban_duration"]
             mda = ban_status["banned_on"]-datetime.now()
+            trh = ban_status["banned_on"]
             if a > 29 :
                 aina='kifurush cha mwezi'
             elif 20<a<29:
@@ -80,7 +81,7 @@ async def start(bot, cmd):
                 aina= 'Kifurush cha wiki 2'
             elif 6<a<13:
                 aina= 'Kifurush cha wiki 1'
-            replyy= f'{START_MSG}\nVIFURUSHI ULIVYOJIUNGA\n**(ili kupata huduma zetu)**\nAina ya kifurushi\n\n{aina}\n\nTarehe ya kifurush kuisha \n\n{ban_status['banned_on']}\n\nMda uliobaki kifurush kuisha\n\n{mda}\n\n**kujua vifurush vyetu tuma neno list**'
+            replyy = f'{START_MSG}\nVIFURUSHI ULIVYOJIUNGA\n**(ili kupata huduma zetu)**\nAina ya kifurushi\n\n{aina}\n\nTarehe ya kifurush kuisha \n\n{trh}\n\nMda uliobaki kifurush kuisha\n\n{mda}\n\n**kujua vifurush vyetu tuma neno list**'
         await cmd.reply_text(
             replyy, 
             parse_mode="Markdown",
