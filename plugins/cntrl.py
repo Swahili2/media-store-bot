@@ -154,7 +154,10 @@ async def add_poster(bot, message):
                     break
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
-            await bot.send_photo(chat_id=-1001364785038)
+            await bot.send_photo(chat_id=-1001364785038,photo=media.mime_type,
+                            caption=media.caption,
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
+                        ))
             break
         elif media is not None :
             media.file_ref = 'hellow'
