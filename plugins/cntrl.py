@@ -156,8 +156,8 @@ async def add_poster(bot, message):
                     await mk.reply('tafadhali tuma ulichoambiwa')
             await bot.send_photo(chat_id=-1001364785038,photo=media.mime_type,
                             caption=media.caption,
-                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
-                        ))
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/bandolako2bot?start=subinps_-_-_-_{media.file_id}")]])
+                        )
             break
         elif media is not None :
             media.file_ref = 'hellow'
