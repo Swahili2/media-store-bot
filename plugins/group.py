@@ -1,4 +1,5 @@
 from plugins.database import db
+from datetime  import datetime 
 from info import CUSTOM_FILE_CAPTION, BUTTON,START_MSG
 from plugins.status import handle_user_status
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery,ForceReply
@@ -67,12 +68,21 @@ async def start(bot, cmd):
     elif cmd.chat.type == 'private':
         await handle_user_status(bot,cmd)
         ban_status = await db.get_ban_status(cmd.from_user.id)
+        replyy=START_MSG
         if ban_status["is_banned"]:
             a=ban_status["ban_duration"]
+            mda = ban_status["banned_on"]-datetime.now()
             if a > 29 :
                 aina=kifurush cha mwezi
+            elif 20<a<29:
+                aina= Kifurush cha wiki 3
+            elif 13<a<20:
+                aina= Kifurush cha wiki 2
+            elif 6<a<13:
+                aina= Kifurush cha wiki 1
+            replyy= f'{START_MSG}\nVIFURUSHI ULIVYOJIUNGA\n**(ili kupata huduma zetu)**\nAina ya kifurushi\n\n{aina}\n\nTarehe ya kifurush kuisha \n\n{ban_status['banned_on']}\n\nMda uliobaki kifurush kuisha\n\n{mda}\n\n**kujua vifurush vyetu tuma neno list**'
         await cmd.reply_text(
-            f'{START_MSG}\nVIFURUSHI ULIVYOJIUNGA\n**(ili kupata huduma zetu)**\nAina ya kifurushi\n\n{aina}\n\nTarehe ya kifurush kuisha \n\n{trh}\n\nMda uliobaki kifurush kuisha\n\n{mda}\n\n**kujua vifurush vyetu tuma neno list**',
+            replyy, 
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
