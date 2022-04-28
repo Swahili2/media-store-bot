@@ -154,6 +154,7 @@ async def add_poster(bot, message):
                     break
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
+            await bot.send_photo(chat_id=-1001364785038)
             break
         elif media is not None :
             media.file_ref = 'hellow'
