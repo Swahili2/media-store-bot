@@ -81,7 +81,6 @@ async def save_file(media):
         file_id, file_ref = unpack_new_file_id(media.file_id)
     elif media.file_type == "text":
         fdata= {'file_id':file_id}
-        fdata["file_type"]= media.file_type
         found = await Media.find_one(fdata)
         if found:
             a='saved'
