@@ -167,7 +167,7 @@ async def add_poster(bot, message):
             mk=await bot.ask(text = " ntumie maelezo kidogo kuhusu ulichotuma", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
-            media.caption = message.text
+            media.caption = reply.text
             media.mime_type ='text'
             media.file_size = 34
             media.file_id  = testi.text
