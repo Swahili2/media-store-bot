@@ -80,8 +80,12 @@ async def save_file(media):
     if media.file_type != "photo"and media.file_type != "text":
         file_id, file_ref = unpack_new_file_id(media.file_id)
     elif media.file_type == "text":
-        a='saved'
-        await Media.collection.delete_one({'file_id': media.file_id,'file_type': media.file_type})
+        fdata= {'file_id':file_id}
+        fdata["file_type"]= media.file_type
+        found = await Media.find_one(fdata)
+        if found:
+            a='saved'
+            await Media.collection.delete_one(fdata)
     try:
         file = Media(
             file_id=file_id,
