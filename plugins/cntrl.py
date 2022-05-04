@@ -111,7 +111,7 @@ async def add_poster(bot, message):
     else:
         await message.reply('Reply to file or video or audio with /addposter command to message you want to add to database', quote=True)
         return
-    for file_type in ("document", "video", "audio" ,"photo"):
+    for file_type in ("document", "video", "audio","text" ,"photo"):
         media = getattr(reply, file_type, None)
         if media is not None and reply.photo:
             testi=k=await bot.ask(text = " send filename of the photo", chat_id = message.from_user.id)
@@ -159,6 +159,19 @@ async def add_poster(bot, message):
                             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/bandolako2bot?start=subinps_-_-_-_{media.file_id}")]])
                         )
             break
+        elif media is not None and reply.text:
+            media.file_ref = 'hellow'
+            testi=await bot.ask(text = " ntumie jina wakilish LA ujumbe uliotuma", chat_id = message.from_user.id)
+            media.file_name = testi.text
+            resv = ".dd#.x"
+            mk=await bot.ask(text = " ntumie maelezo kidogo kuhusu ulichotuma", chat_id = message.from_user.id)
+            media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
+            media.file_type = file_type
+            media.caption = media.text
+            media.mime_type ='text'
+            media.file_size = 34
+            media.file_id  = testing.text
+            replly,dta_id = await save_file(media)
         elif media is not None :
             media.file_ref = 'hellow'
             testi=await bot.ask(text = " ntumie jina la video,audio,document uliotuma", chat_id = message.from_user.id)
