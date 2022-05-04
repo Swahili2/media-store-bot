@@ -170,7 +170,7 @@ async def add_poster(bot, message):
             media.caption = reply.text
             media.mime_type ='text'
             media.file_size = 34
-            media.file_id  = testi.text
+            media.file_id  = testi.text.lower()
             replly,dta_id = await save_file(media)
         elif media is not None :
             media.file_ref = 'hellow'
