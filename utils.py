@@ -76,9 +76,11 @@ async def save_file(media):
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_ref= media.file_ref
     file_id = media.file_id
+    a='not saved'
     if media.file_type != "photo"and media.file_type != "text":
         file_id, file_ref = unpack_new_file_id(media.file_id)
     elif media.file_type == "text":
+        a='saved'
         await Media.collection.delete_one({'file_id': media.file_id,'file_type': media.file_type})
     try:
         file = Media(
@@ -96,10 +98,10 @@ async def save_file(media):
         try:
             await file.commit()
         except DuplicateKeyError:
-            logger.warning(media.file_name + " is already saved in database")
+            logger.warning(f'{a}{media.file_name} is already saved in database')
             return 'file exist', file_id
         else:
-            logger.info(media.file_name + " is saved in database")
+            logger.info(f'{a}{media.file_name} is saved in database')
             return 'file sent', file_id 
 
 async def get_search_results(query, file_type=None, max_results=10, offset=0):
