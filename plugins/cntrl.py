@@ -167,10 +167,10 @@ async def add_poster(bot, message):
             mk=await bot.ask(text = " ntumie maelezo kidogo kuhusu ulichotuma", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
             media.file_type = file_type
-            media.caption = media.text
+            media.caption = message.text
             media.mime_type ='text'
             media.file_size = 34
-            media.file_id  = testing.text
+            media.file_id  = testi.text
             replly,dta_id = await save_file(media)
         elif media is not None :
             media.file_ref = 'hellow'
