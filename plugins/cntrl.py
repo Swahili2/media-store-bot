@@ -162,7 +162,7 @@ async def add_poster(bot, message):
         elif media is not None and reply.text:
             media.file_ref = 'hellow'
             testi=await bot.ask(text = " ntumie jina wakilish LA ujumbe uliotuma", chat_id = message.from_user.id)
-            media.file_name = testi.text
+            media.file_name = testi.text.strip()
             resv = ".dd#.x"
             mk=await bot.ask(text = " ntumie maelezo kidogo kuhusu ulichotuma", chat_id = message.from_user.id)
             media.file_name = f'{mk.text}.dd#.{media.file_name}{resv}'
@@ -170,7 +170,7 @@ async def add_poster(bot, message):
             media.caption = reply.text
             media.mime_type ='text'
             media.file_size = 34
-            media.file_id  = testi.text.lower()
+            media.file_id  = media.file_name.lower()
             replly,dta_id = await save_file(media)
         elif media is not None :
             media.file_ref = 'hellow'
