@@ -67,6 +67,12 @@ async def answer(bot, query):
                             file_id=file.file_id,
                             caption=f_caption,
                             description=f'{descp}'))
+                elif file.file_type="text":
+                    results.append(InlineQueryResultArticle(
+                            title=title.upper(),
+                            input_message_content=InputTextMessageContent(message_text = f_caption),
+                            description= descp,
+                        ))
                 else:
                     reply_markup=get_reply_markup(string,file.file_id,nyva)
                     results.append(InlineQueryResultPhoto(
