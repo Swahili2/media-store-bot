@@ -59,7 +59,7 @@ async def answer(bot, query):
             if f_caption is None:
                 f_caption = f"{title}"
             if id2=='x':
-                if file.file_type != "photo":
+                if file.file_type != "photo" and file.file_type != "text":
                     reply_markup=get_reply_markup(string,file.file_id,nyva)
                     results.append(
                         InlineQueryResultCachedDocument(
@@ -67,7 +67,7 @@ async def answer(bot, query):
                             file_id=file.file_id,
                             caption=f_caption,
                             description=f'{descp}'))
-                elif file.file_type="text":
+                elif file.file_type =="text":
                     results.append(InlineQueryResultArticle(
                             title=title.upper(),
                             input_message_content=InputTextMessageContent(message_text = f_caption),
