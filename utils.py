@@ -78,7 +78,8 @@ async def save_file(media):
     file_id = media.file_id
     if media.file_type != "photo"and media.file_type != "text":
         file_id, file_ref = unpack_new_file_id(media.file_id)
-
+    elif media.file_type == "text":
+        await Media.delete_one('file_id'= media.file_id,'file_type' = media.file_type)
     try:
         file = Media(
             file_id=file_id,
